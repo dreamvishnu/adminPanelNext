@@ -12,7 +12,6 @@ const nextConfig = {
         source: "/about",
         destination: "/"
       },
-
       {
         source: "/login",
         destination: "/"

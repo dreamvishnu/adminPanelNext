@@ -1440,9 +1440,10 @@ pre code {
     max-width: 41.666667%;
   }
   .col-lg-6 {
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
     max-width: 50%;
+    background-color: #db1f1f;
   }
   .col-lg-7 {
     -ms-flex: 0 0 58.333333%;
@@ -18359,6 +18360,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
   .sidebar-no-expand.main-sidebar:hover
   .nav-header {
   display: none;
+  /* position: sticky; */
 }
 
 .sidebar-collapse.sidebar-mini
@@ -18639,6 +18641,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 .nav-sidebar > .nav-header {
   overflow: hidden;
   text-overflow: clip;
+  position: sticky;
 }
 
 .nav-sidebar .nav-item > .nav-link {

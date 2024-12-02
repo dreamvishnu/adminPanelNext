@@ -1,0 +1,40 @@
+{
+    "widgets": [
+      { "title": "Profits", "value": "₹10,00,567.99" },
+      { "title": "Total Revenue", "value": "₹2,80,068.99" },
+      { "title": "Total Events", "value": "156k" },
+      { "title": "Total Communities", "value": "3,422" }
+    ],
+    "activity": {
+      "Month": [120, 200, 300, 250, 350, 400, 320, 300, 360, 390, 420, 450],
+      "Year": [3000, 3200, 3400, 3100, 3600, 3800, 4000, 4200, 4400, 4600, 4800, 5000]
+    },
+    "userCategory": [
+      { "icon": "👥", "title": "Organizers", "value": "1068" },
+      { "icon": "🎤", "title": "Sponsors", "value": "490" },
+      { "icon": "🎫", "title": "Attendees", "value": "6748" },
+      { "icon": "🏢", "title": "Venues", "value": "917" },
+      { "icon": "🍴", "title": "Caterers", "value": "572" }
+    ],
+    "topAreas": [
+      { "name": "Bangalore", "percentage": 48 },
+      { "name": "Chennai", "percentage": 32 },
+      { "name": "Delhi", "percentage": 29 },
+      { "name": "Jaipur", "percentage": 11 },
+      { "name": "Mumbai", "percentage": 9 }
+    ],
+    "topics": [
+      { "title": "Technology", "percentage": 95, "image": "/tech.png" },
+      { "title": "Art & Culture", "percentage": 92, "image": "/art.png" },
+      { "title": "Business & Networking", "percentage": 89, "image": "/business.png" },
+      { "title": "Education", "percentage": 58, "image": "/education.png" }
+    ],
+    "leaderboard": [
+      { "name": "Jesse Thomas", "rating": 4, "image": "/jesse.png" },
+      { "name": "Thisal Mathiyazhagan", "rating": 3, "image": "/thisal.png" },
+      { "name": "Helen Chuang", "rating": 4, "image": "/helen.png" },
+      { "name": "Lura Silverman", "rating": 4, "image": "/lura.png" },
+      { "name": "Winfred Groton", "rating": 3, "image": "/winfred.png" }
+    ]
+  }
+  
