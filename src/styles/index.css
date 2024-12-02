@@ -2,6 +2,7 @@
 @import "react-loading-skeleton/dist/skeleton.css";
 @import "./Adminpanel.css";
 @import "./OverlayScrollbars.css";
+@import "./globals.css";
 .loading-background {
   z-index: 9999 !important;
 }
@@ -107,4 +108,80 @@
 
 input.password-hide-css {
   -webkit-text-security: disc;
+}
+/* Slider styles */
+.slider {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #6200ea;
+  border-radius: 10px;
+}
+
+.tab {
+  flex: 1;
+  padding: 15px;
+  cursor: pointer;
+  background-color: #ddd;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.tab.active {
+  background-color: #3700b3;
+}
+
+/* Content styles */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stats, .charts, .topics, .leaderboard {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.stat-item, .chart, .topic, .leader {
+  flex: 1;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  margin: 5px;
+  text-align: center;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+}
+
+/* Specific styles for each section */
+.stats .stat-item {
+  background-color: #e0f7fa;
+}
+
+.charts .chart {
+  background-color: #e8f5e9;
+}
+
+.topics .topic {
+  background-color: #fff3e0;
+}
+
+.leaderboard .leader {
+  background-color: #f3e5f5;
+}
+
+/* Additional styles for layout */
+.stats, .charts, .topics, .leaderboard {
+  flex-wrap: wrap;
+}
+
+.stat-item, .chart, .topic, .leader {
+  min-width: 150px;
+  margin: 10px;
 }

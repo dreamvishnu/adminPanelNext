@@ -6,6 +6,7 @@ interface Children {
   blank?: string;
   children?: Array<Children>;
 }
+
 export interface Menu {
   path: string;
   icon: string;
@@ -15,61 +16,31 @@ export interface Menu {
   navheader?: boolean;
   children?: Array<Children>;
 }
+
 const menu: Array<Menu> = [
   {
-    path: "/dashboard",
-    icon: "nav-icon fas fa-tachometer-alt",
-    title: "Dashboard"
+    title: "Overview",
+    path: "/",
+    icon: "nav-icon fas fa-eye"
   },
   {
-    path: "/",
-    icon: "nav-icon fas fa-database",
-    title: "Data Master",
+    title: "Users",
+    path: "/users",
+    icon: "nav-icon fas fa-users",
     children: [
-      {
-        path: "/about",
-        title: "Data Users"
-      },
-      {
-        path: "/category",
-        title: "Menu 2"
-      }
-    ]
+      { title: "Attendees", path: "/users/attendees", icon: "nav-icon fas fa-user" },
+      { title: "Organisers", path: "/users/organisers", icon: "nav-icon fas fa-user-tie" },
+      { title: "Sponsors", path: "/users/sponsors", icon: "nav-icon fas fa-handshake" },
+      { title: "Venue Providers", path: "/users/venue-providers", icon: "nav-icon fas fa-building" },
+      { title: "Food Providers", path: "/users/food-providers", icon: "nav-icon fas fa-utensils" },
+      { title: "Speakers", path: "/users/speakers", icon: "nav-icon fas fa-microphone" },
+    ],
   },
   {
-    path: "/",
-    icon: "nav-icon fas fa-database",
-    title: "Menu Level",
-    children: [
-      {
-        path: "/",
-        title: "Level 1"
-      },
-      {
-        path: "",
-        title: "Level 2",
-        icon: "nav-icon fas far fa-circle nav-icon",
-        children: [
-          {
-            path: "/",
-            title: "Sub Level 2"
-          },
-          {
-            path: "/",
-            title: "Sub Level 3"
-          },
-          {
-            path: "/",
-            title: "Sub Level 4"
-          }
-        ]
-      },
-      {
-        path: "/",
-        title: "Level 3"
-      }
-    ]
-  }
+    title: "Settings",
+    path: "/settings",
+    icon: "nav-icon fas fa-cog"
+  },
 ];
 
 export default menu;
