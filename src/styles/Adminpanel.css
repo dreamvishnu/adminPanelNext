@@ -12492,7 +12492,7 @@ body.sidebar-collapse:not(.sidebar-mini-xs):not(.sidebar-mini-md):not(
 }
 
 .content-wrapper > .content {
-  padding: 0 0.5rem;
+  padding: 0 30px;
 }
 
 .main-sidebar,
