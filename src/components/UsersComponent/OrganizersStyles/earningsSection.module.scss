@@ -1,0 +1,87 @@
+.container {
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 20px;
+  // box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  transition: transform 0.2s ease;
+
+  // &:hover {
+  //   transform: translateY(-5px);
+  //   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  // }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .title {
+    font-size: 1.5rem;
+    color: #611F69;
+    font-weight: bold;
+    margin: 0;
+    text-transform: capitalize;
+  }
+
+  .dropdown {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background: #fff;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    // &:hover {
+    //   transform: translateY(-10px) scale(1.02); /* Creates a 3D hover effect */
+    //   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    // }
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  gap: 20px;
+
+  .card {
+    flex: 1;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 20px;
+    // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  // &:hover {
+  //   transform: translateY(-10px) scale(1.02); /* Creates a 3D hover effect */
+  //   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  // }
+
+    .label {
+      font-size: 1rem;
+      color: #000000;
+    }
+
+    .amount {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #611F69;
+      transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .animate {
+      &.key {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+  }
+}
