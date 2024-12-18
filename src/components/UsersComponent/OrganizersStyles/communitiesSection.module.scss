@@ -2,14 +2,13 @@
   padding: 20px;
   background: white;
   border-radius: 20px;
-  // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .title {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #611F69;
+  color: #611f69;
 }
 
 .communitiesGrid {
@@ -19,53 +18,57 @@
 }
 
 .communityCard {
-  display: flex;
-  padding: 15px;
-  background: #f9f9f9;
-  // border: 1px solid #ddd;
+  position: relative;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
   border-radius: 20px;
+  overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  align-items: center;
 
   &:hover {
-    transform: translateY(-5px) scale(1.0); /* 3D Hover effect */
+    transform: translateY(-5px) scale(1.05);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   }
-}
 
-.dateBox {
-  min-width: 70px;
-  text-align: center;
-  background: #e0e7ff;
-  border-radius: 20px;
-  padding: 10px;
-  margin-right: 15px;
-
-  .month {
-    display: block;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #6366f1;
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease;
   }
 
-  .day {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #1f2937;
-  }
-}
-
-.communityDetails {
-  .communityName {
-    font-size: 1.0rem;
-    font-weight: bold;
-    color: #611F69;
-    margin: 0 0 5px;
+  &:hover .overlay {
+    background: rgba(0, 0, 0, 0.6);
   }
 
-  .membersCount {
-    font-size: 0.9rem;
-    color: #fd2933;
+  .communityDetails {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 1;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(20px);
+
+    .communityName {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .membersCount {
+      font-size: 1rem;
+    }
+  }
+
+  &:hover .communityDetails {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

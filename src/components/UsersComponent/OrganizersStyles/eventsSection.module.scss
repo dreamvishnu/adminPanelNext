@@ -2,7 +2,6 @@
   padding: 20px;
   background: white;
   border-radius: 20px;
-  // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .title {
@@ -22,71 +21,67 @@
 }
 
 .eventCard {
-  display: flex;
-  padding: 15px;
-  background: #f9f9f9;
-  // border: 1px solid #ddd;
+  position: relative;
+  background-size: cover;
+  background-position: center;
   border-radius: 20px;
+  overflow: hidden;
+  height: 250px;
+  display: flex;
+  align-items: flex-end;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    transform: translateY(-5px) scale(1.0); /* Creates a 3D hover effect */
+    transform: translateY(-5px) scale(1.02);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  &:hover .overlay {
+    background-color: rgba(0, 0, 0, 0.6); /* Slight dark tint on hover */
+  }
+
+  &:hover .eventDetails {
+    opacity: 1;
+    transform: translateY(0); /* Slide up into visibility */
   }
 }
 
-.dateBox {
-  min-width: 70px;
-  text-align: center;
-  background: #e0e7ff;
-  border-radius: 20px;
-  padding: 10px;
-  margin-right: 15px;
-
-  .month {
-    display: block;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #6366f1;
-  }
-
-  .day {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #1f2937;
-  }
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.1); /* Light initial tint */
+  transition: background-color 0.3s ease;
 }
 
 .eventDetails {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: white;
+  opacity: 0;
+  transform: translateY(20px); /* Slightly hidden initially */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
   .eventName {
-    font-size: 1.0rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    color: #1f2937;
-    margin: 0 0 5px;
+    margin-bottom: 5px;
   }
 
-  .venue {
+  .venue,
+  .time,
+  .price,
+  .attendees {
     font-size: 0.9rem;
-    color: #000000;
-    margin: 0 0 5px;
-  }
-
-  .time {
-    font-size: 0.9rem;
-    color: #000000;
-    margin: 0 0 5px;
+    margin: 2px 0;
   }
 
   .price {
-    font-size: 0.9rem;
     font-weight: bold;
-    color: #fd2933;
-    margin: 0 0 5px;
-  }
-
-  .attendees {
-    font-size: 0.9rem;
-    color: #000000;
+    color: #ffd700;
   }
 }

@@ -1,26 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../OrganizersStyles/organisersList.module.scss";
 import { FaStar } from "react-icons/fa";
 
-const organisers = [
-  { name: "Aman Ahuja", rating: 4.0, events: 15, communities: 10, emoji: "👨‍💼" },
-  { name: "Sofia Singh", rating: 4.5, events: 12, communities: 14, emoji: "👩‍💼" },
-  { name: "Ravi Sharma", rating: 4.3, events: 20, communities: 8, emoji: "👨‍💼" },
-];
+interface Organiser {
+  name: string;
+  rating: number;
+  events: number;
+  communities: number;
+  emoji: string;
+}
 
-const OrganisersList: React.FC = () => {
-  const [selectedOrganiser, setSelectedOrganiser] = useState(organisers[0]);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+interface Props {
+  organisers: Organiser[];
+  selectedOrganiser: Organiser;
+  setSelectedOrganiser: (organiser: Organiser) => void;
+}
+
+const OrganisersList: React.FC<Props> = ({
+  organisers,
+  selectedOrganiser,
+  setSelectedOrganiser,
+}) => {
+  const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
-  const handleSelectOrganiser = (organiser: typeof organisers[0]) => {
-    setSelectedOrganiser(organiser);
-    setIsDropdownOpen(false);
-  };
-
-  const renderStars = (rating: number) => {
-    const stars = Array(5)
+  const renderStars = (rating: number) =>
+    Array(5)
       .fill(0)
       .map((_, i) => (
         <FaStar
@@ -28,12 +34,9 @@ const OrganisersList: React.FC = () => {
           className={i < Math.floor(rating) ? styles.filledStar : styles.emptyStar}
         />
       ));
-    return stars;
-  };
 
   return (
     <section className={styles.container}>
-      {/* Main Organizer Tab */}
       <div
         className={styles.dropdownTab}
         onClick={toggleDropdown}
@@ -46,8 +49,6 @@ const OrganisersList: React.FC = () => {
         <span className={styles.communities}>{selectedOrganiser.communities} Communities</span>
         <span className={styles.arrow}>{isDropdownOpen ? "▲" : "▼"}</span>
       </div>
-
-      {/* Dropdown List */}
       <div
         className={`${styles.dropdownList} ${
           isDropdownOpen ? styles.dropdownOpen : styles.dropdownClosed
@@ -57,9 +58,12 @@ const OrganisersList: React.FC = () => {
           <div
             key={index}
             className={styles.listItem}
-            onClick={() => handleSelectOrganiser(organiser)}
+            onClick={() => {
+              setSelectedOrganiser(organiser);
+              setIsDropdownOpen(false);
+            }}
           >
-            <span className={styles.emoji}>{selectedOrganiser.emoji}</span>
+            <span className={styles.emoji}>{organiser.emoji}</span>
             <span className={styles.name}>{organiser.name}</span>
             <span className={styles.stars}>{renderStars(organiser.rating)}</span>
             <span className={styles.events}>{organiser.events} Events</span>

@@ -1,5 +1,5 @@
 import { PanelContent } from "@/components";
-import React from "react";
+import React, { useState } from "react";
 import OrganisersList from "@/components/UsersComponent/OrganizersComponent/OrganisersList";
 import ToggleSection from "@/components/UsersComponent/OrganizersComponent/ToggleSection";
 import EarningsSection from "@/components/UsersComponent/OrganizersComponent/EarningsSection";
@@ -9,7 +9,59 @@ import DeleteAccountButton from "@/components/UsersComponent/OrganizersComponent
 
 import styles from "./MainStyles/organisersPage.module.scss";
 
+// Organisers data with earnings and withdrawals
+const organisers = [
+  {
+    name: "Aman Ahuja",
+    rating: 4.0,
+    events: 15,
+    communities: 10,
+    emoji: "👨‍💼",
+    earnings: "₹2,50,000.00",
+    withdrawals: "₹50,000.00",
+  },
+  {
+    name: "Sofia Singh",
+    rating: 4.5,
+    events: 12,
+    communities: 14,
+    emoji: "👩‍💼",
+    earnings: "₹3,00,000.00",
+    withdrawals: "₹70,000.00",
+  },
+  {
+    name: "Ravi Sharma",
+    rating: 4.3,
+    events: 20,
+    communities: 8,
+    emoji: "👨‍💼",
+    earnings: "₹1,80,000.00",
+    withdrawals: "₹40,000.00",
+  },
+];
+
 const OrganisersPage: React.FC = () => {
+  // State to track selected organizer
+  const [selectedOrganiser, setSelectedOrganiser] = useState(organisers[0]);
+
+  // State to track toggle states for each organizer
+  const [organiserToggles, setOrganiserToggles] = useState(() =>
+    organisers.reduce((acc, organiser) => {
+      acc[organiser.name] = [false, false, false, false, false, false]; // 6 toggles all off initially
+      return acc;
+    }, {} as Record<string, boolean[]>)
+  );
+
+  // Handler to update toggles for the selected organizer
+  const updateToggle = (index: number, value: boolean) => {
+    setOrganiserToggles((prevState) => ({
+      ...prevState,
+      [selectedOrganiser.name]: prevState[selectedOrganiser.name].map((state, i) =>
+        i === index ? value : state
+      ),
+    }));
+  };
+
   return (
     <PanelContent headerContent title="">
       <div className={styles.mainContainer}>
@@ -19,9 +71,26 @@ const OrganisersPage: React.FC = () => {
             <p>Manage your organizers here, in one place.</p>
           </header>
           <main className={styles.main}>
-            <OrganisersList />
-            <ToggleSection />
-            <EarningsSection />
+            {/* OrganisersList */}
+            <OrganisersList
+              organisers={organisers}
+              selectedOrganiser={selectedOrganiser}
+              setSelectedOrganiser={setSelectedOrganiser}
+            />
+            
+            {/* ToggleSection */}
+            <ToggleSection
+              toggles={organiserToggles[selectedOrganiser.name]}
+              updateToggle={updateToggle}
+            />
+
+            {/* EarningsSection dynamically updates based on selected organiser */}
+            <EarningsSection
+              earnings={selectedOrganiser.earnings}
+              withdrawals={selectedOrganiser.withdrawals}
+            />
+
+            {/* Existing components */}
             <EventsSection />
             <CommunitiesSection />
             <DeleteAccountButton />
