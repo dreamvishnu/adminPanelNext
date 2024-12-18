@@ -1,0 +1,22 @@
+// OrganisersEvent.module.scss
+
+.pageContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9; // or use your global background color
+  
+  h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #555;
+  }
+}
