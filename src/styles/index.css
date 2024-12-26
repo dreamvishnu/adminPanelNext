@@ -23,6 +23,17 @@
   opacity: 0.5;
   text-decoration: none;
 }
+/* Global scrollbar hiding while keeping scroll functionality */
+html, body {
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
 
 .form-control.is-invalid,
 .was-validated .form-control:invalid {

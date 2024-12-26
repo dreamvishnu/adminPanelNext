@@ -63,9 +63,9 @@ const SidebarNavList: React.FC<props> = (props) => {
             onClick={handleMainMenuAction}
             style={{ cursor: "pointer" }}
           >
-            {props.submenu === "active" ? (
-              <i className="far fa-circle nav-icon" />
-            ) : null}
+            {/* {props.submenu === "active" ? (
+              <i className="" />
+            ) : null} */}
             {icon} {title}
           </Link>
         ) : null}

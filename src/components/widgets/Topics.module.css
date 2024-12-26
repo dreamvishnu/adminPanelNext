@@ -1,50 +1,129 @@
 .topics {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
+  padding: 20px;
+  /* background: #ffffff; */
+  border-radius: 15px;
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+}
+
+.topics h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #374151;
+  margin-bottom: 20px;
+}
+
+.topic {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.topic:hover {
+  background-color: #f3f4f6;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 15px;
+  overflow: hidden;
+}
+
+.iconImage {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+  z-index: 2;
+}
+
+.details {
+  flex: 1;
+}
+
+.details span {
+  display: block;
+  font-size: 16px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.progressBar {
+  position: relative;
+  background-color: #e5e7eb; /* Light gray for background */
+  border-radius: 10px;
+  height: 15px;
+  overflow: visible; /* Allows bubble to overflow */
+  margin: 10px 0;
+}
+
+.progress {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    #f59e0b, /* Vibrant Orange */
+    #fcd34d, /* Light Yellow */
+    #10b981 /* Blueish Green */
+  );
+  /* position: relative; */
+  animation: progressBarAnimation 2s ease-out;
+  position: relative;
+}
+
+@keyframes progressBarAnimation {
+  from {
+    width: 0%;
   }
-  
-  .topics h3 {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333333;
-    margin-bottom: 20px;
+  to {
+    width: 100%;
   }
-  
-  .topic {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+}
+
+.progressBubble {
+  position: absolute;
+  top: -25px; /* Position bubble above the progress bar */
+  right: 0; /* Align bubble to the end of the progress */
+  transform: translateX(50%); /* Perfectly centers the bubble */
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  /* z-index: 10; Ensure it overlays other elements */
+  animation: bounce 2s infinite;
+  z-index: 10; /* Ensure it overlays the bar */
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(50%) translateY(0);
   }
-  
-  .image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 20px;
-    object-fit: cover;
-    border: 2px solid #ddd;
+  50% {
+    transform: translateX(50%) translateY(-5px);
   }
-  
-  .details {
-    flex: 1;
-  }
-  
-  .details span {
-    display: block;
-    font-size: 16px;
-    color: #333333;
-  }
-  
-  .progressBar {
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    height: 10px;
-    margin: 5px 0;
-    position: relative;
-  }
-  
-  .progress {
-    background-color: #6200ea;
-    height: 100%;
-    border-radius: 5px;
-  }
-  
+}
+
+.progressBubble::after {
+  content: "";
+  position: absolute;
+  bottom: -5px; /* Create small "pointer" below bubble */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
