@@ -1,34 +1,44 @@
 import { useState } from "react";
-import { PanelContent } from "@/components"; // Use this as the parent container
+import { PanelContent } from "@/components";
 import Overview from "@/components/overview/Overview";
 import Help from "@/components/help/Help";
+import { Box } from "@mui/material";
+import styles from "./IndexPage.module.css";
 
 const IndexPage = () => {
   const [activeTab, setActiveTab] = useState<"overview" | "help">("overview");
 
   return (
-    <PanelContent headerContent title="Dashboard">
+    <PanelContent headerContent>
       {/* Tab Navigation */}
-      <div className="tab-container">
-        <button
-          className={`tab ${activeTab === "overview" ? "active" : ""}`}
+      <Box className="scrollableContent">
+      <Box className={styles.tabContainer}>
+        <div
+          className={`${styles.tab} ${activeTab === "overview" ? styles.active : ""}`}
           onClick={() => setActiveTab("overview")}
         >
           Overview
-        </button>
-        <button
-          className={`tab ${activeTab === "help" ? "active" : ""}`}
+        </div>
+        <div
+          className={`${styles.tab} ${activeTab === "help" ? styles.active : ""}`}
           onClick={() => setActiveTab("help")}
         >
           Help
-        </button>
-      </div>
+        </div>
+        <div
+          className={styles.indicator}
+          style={{
+            transform: `translateX(${activeTab === "overview" ? "0%" : "100%"})`,
+          }}
+        />
+      </Box>
 
       {/* Tab Content */}
-      <div>
+      <Box>
         {activeTab === "overview" && <Overview />}
         {activeTab === "help" && <Help />}
-      </div>
+      </Box>
+      </Box>
     </PanelContent>
   );
 };

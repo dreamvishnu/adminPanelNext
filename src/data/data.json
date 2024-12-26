@@ -1,40 +1,84 @@
 {
-    "widgets": [
-      { "title": "Profits", "value": "₹10,00,567.99" },
-      { "title": "Total Revenue", "value": "₹2,80,068.99" },
-      { "title": "Total Events", "value": "156k" },
-      { "title": "Total Communities", "value": "3,422" }
-    ],
-    "activity": {
-      "Month": [120, 200, 300, 250, 350, 400, 320, 300, 360, 390, 420, 450],
-      "Year": [3000, 3200, 3400, 3100, 3600, 3800, 4000, 4200, 4400, 4600, 4800, 5000]
+  "widgets": [
+    {
+      "title": "Total Revenue",
+      "value": "$2,850,000",
+      "description": "Revenue generated this month."
     },
-    "userCategory": [
-      { "icon": "👥", "title": "Organizers", "value": "1068" },
-      { "icon": "🎤", "title": "Sponsors", "value": "490" },
-      { "icon": "🎫", "title": "Attendees", "value": "6748" },
-      { "icon": "🏢", "title": "Venues", "value": "917" },
-      { "icon": "🍴", "title": "Caterers", "value": "572" }
-    ],
-    "topAreas": [
-      { "name": "Bangalore", "percentage": 48 },
-      { "name": "Chennai", "percentage": 32 },
-      { "name": "Delhi", "percentage": 29 },
-      { "name": "Jaipur", "percentage": 11 },
-      { "name": "Mumbai", "percentage": 9 }
-    ],
-    "topics": [
-      { "title": "Technology", "percentage": 95, "image": "/tech.png" },
-      { "title": "Art & Culture", "percentage": 92, "image": "/art.png" },
-      { "title": "Business & Networking", "percentage": 89, "image": "/business.png" },
-      { "title": "Education", "percentage": 58, "image": "/education.png" }
-    ],
-    "leaderboard": [
-      { "name": "Jesse Thomas", "rating": 4, "image": "/jesse.png" },
-      { "name": "Thisal Mathiyazhagan", "rating": 3, "image": "/thisal.png" },
-      { "name": "Helen Chuang", "rating": 4, "image": "/helen.png" },
-      { "name": "Lura Silverman", "rating": 4, "image": "/lura.png" },
-      { "name": "Winfred Groton", "rating": 3, "image": "/winfred.png" }
+    {
+      "title": "Unique Users",
+      "value": "34,567",
+      "description": "Unique users active this month."
+    },
+    {
+      "title": "Total Events",
+      "value": "12,450",
+      "description": "Events conducted this month."
+    },
+    {
+      "title": "Total Communities",
+      "value": "1,235",
+      "description": "Communities actively participating."
+    }
+  ],
+  "activity": {
+    "Month": [120, 200, 300, 250, 350, 400, 320, 300, 360, 390, 420, 450],
+    "Year": [
+      3000, 3200, 3400, 3100, 3600, 3800, 4000, 4200, 4400, 4600, 4800, 5000
     ]
-  }
-  
+  },
+  "userCategory": [
+    { "icon": "👥", "title": "Organizers", "value": "1068" },
+    { "icon": "👥", "title": "Speakers", "value": "868" },
+    { "icon": "🎤", "title": "Sponsors", "value": "490" },
+    { "icon": "🎫", "title": "Attendees", "value": "6748" },
+    { "icon": "🏢", "title": "Venues", "value": "917" },
+    { "icon": "🍴", "title": "Caterers", "value": "572" }
+  ],
+  "topAreas": [
+    { "name": "Bangalore", "percentage": 48, "color": "#ccffcc" },
+    { "name": "Chennai", "percentage": 32, "color": "#ffce1b" },
+    { "name": "Delhi", "percentage": 29, "color": "#ff2c2c" },
+    { "name": "Jaipur", "percentage": 11, "color": "#FF8DA1" },
+    { "name": "Mumbai", "percentage": 9, "color": "#63C3EE" }
+  ],
+  "topics": [
+    {
+      "title": "React",
+      "percentage": 78,
+      "icon": "physics",
+     "color": "linear-gradient(135deg, #ffd700, #ffae42)"
+    },
+    {
+      "title": "JavaScript",
+      "percentage": 65,
+      "icon": "js",
+      "color": "#f7df1e"
+    },
+    {
+      "title": "CSS",
+      "percentage": 85,
+      "icon": "secure",
+      "color": "#2965f1"
+    },
+    {
+      "title": "Cloud",
+      "percentage": 85,
+      "icon": "cloud-server",
+      "color": "#00c4ff"
+    },
+    {
+      "title": "Penetration Testing",
+      "percentage": 85,
+      "icon": "penetration-testing",
+      "color": "linear-gradient(135deg, #32cd32, #228b22)"
+    }
+  ],
+  "leaderboard": [
+    { "name": "Arjun Sharma", "rating": 4, "image": "/1" },
+    { "name": "Priya Iyer", "rating": 3, "image": "/2" },
+    { "name": "Ananya Rao", "rating": 4, "image": "/3" },
+    { "name": "Ravi Kumar", "rating": 4, "image": "/4" },
+    { "name": "Neha Verma", "rating": 3, "image": "/5" }
+  ]
+}

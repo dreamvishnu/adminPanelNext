@@ -9,8 +9,18 @@ import DeleteAccountButton from "@/components/UsersComponent/OrganizersComponent
 
 import styles from "./MainStyles/organisersPage.module.scss";
 
+type Organiser = {
+  name: string;
+  rating: number;
+  events: number;
+  communities: number;
+  emoji: string;
+  earnings: string;
+  withdrawals: string;
+};
+
 // Organisers data with earnings and withdrawals
-const organisers = [
+const organisers: Organiser[] = [
   {
     name: "Aman Ahuja",
     rating: 4.0,
@@ -54,9 +64,9 @@ const OrganisersPage: React.FC = () => {
 
   // Handler to update toggles for the selected organizer
   const updateToggle = (index: number, value: boolean) => {
-    setOrganiserToggles((prevState) => ({
+    setOrganiserToggles((prevState: Record<string, boolean[]>) => ({
       ...prevState,
-      [selectedOrganiser.name]: prevState[selectedOrganiser.name].map((state, i) =>
+      [selectedOrganiser.name]: prevState[selectedOrganiser.name].map((state: boolean, i: number) =>
         i === index ? value : state
       ),
     }));
@@ -66,16 +76,20 @@ const OrganisersPage: React.FC = () => {
     <PanelContent headerContent title="">
       <div className={styles.mainContainer}>
         <div className={styles.container}>
-          <header className={styles.header}>
+          {/* <header className={styles.header}>
             <h1>Organizer Management</h1>
             <p>Manage your organizers here, in one place.</p>
-          </header>
+          </header> */}
           <main className={styles.main}>
             {/* OrganisersList */}
             <OrganisersList
               organisers={organisers}
               selectedOrganiser={selectedOrganiser}
-              setSelectedOrganiser={setSelectedOrganiser}
+              setSelectedOrganiser={(organiser) => {
+                // Type assertion to ensure organiser matches the expected type
+                const typedOrganiser = organiser as typeof selectedOrganiser;
+                setSelectedOrganiser(typedOrganiser);
+              }}
             />
             
             {/* ToggleSection */}

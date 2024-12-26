@@ -1,0 +1,179 @@
+.help {
+  &__container {
+    padding: 20px;
+    background: #f9fafc;
+    border-radius: 15px;
+  }
+
+  &__hero {
+    text-align: center;
+    margin-bottom: 30px;
+
+    h1 {
+      font-size: 2.5rem;
+      color: #4f46e5;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #6b7280;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__searchBar {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+
+    input {
+      width: 100%;
+      padding: 10px 40px 10px 10px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 16px;
+
+      &:focus {
+        border-color: #4f46e5;
+        outline: none;
+      }
+    }
+
+    .searchIcon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #6b7280;
+    }
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+
+    .card {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10px;
+        height: 100%;
+        background-color: var(--card-color, #4f46e5);
+        border-radius: 15px 0 0 15px;
+      }
+
+      .cardIcon {
+        font-size: 2.5rem;
+        color: var(--card-color, #4f46e5);
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        margin-bottom: 5px;
+        color: #374151;
+      }
+
+      p {
+        color: #6b7280;
+        font-size: 14px;
+      }
+    }
+  }
+  .card::before {
+    background-color: var(--card-color, #4f46e5); // Default backup color
+  }
+  
+
+  &__faqs {
+    margin-top: 20px;
+
+    h2 {
+      color: #4f46e5;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .faq {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+      .question {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        font-weight: 600;
+        color: #4f46e5;
+      }
+
+      .answer {
+        margin-top: 10px;
+        color: #6b7280;
+      }
+    }
+  }
+
+  &__videos {
+    margin-top: 30px;
+
+    h2 {
+      color: #4f46e5;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .videoGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // Ensures proper scaling for videos
+      gap: 20px;
+    }
+
+    .videoCard {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+
+      .videoFrame {
+        width: 100%; // Ensures the iframe fills the card width
+        aspect-ratio: 16 / 9; // Maintains the correct video aspect ratio
+        border: none; // Removes the iframe border
+      }
+
+      .videoTitle {
+        padding: 10px;
+        font-weight: 600;
+        color: #374151;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        .playIcon {
+          color: #4f46e5;
+        }
+      }
+    }
+  }
+}

@@ -1,32 +1,37 @@
 .container {
-  /* background-color: #ffffff; */
   border-radius: 10px;
-  /* padding: 20px; */
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(40, 121, 221, 0.852);
+  background-color: white;
+}
+
+/* Chart Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.chartContainer {
+  height: 400px;
+  position: relative;
 }
 
 .filter {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 20px;
+  align-items: center;
 }
 
-.filterSelect {
-  padding: 8px 12px;
-  font-size: 14px;
-  font-weight: bold;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  outline: none;
-  cursor: pointer;
-  transition: border-color 0.2s ease;
-}
+
 
 .filterSelect:hover {
   border-color: #6200ea;
 }
 
-.chartContainer {
-  height: 300px; /* Adjust height for better responsiveness */
+.filterSelect {
+  border: 1px solid #6200ea;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 10px;
 }
