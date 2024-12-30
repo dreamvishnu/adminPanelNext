@@ -14,8 +14,8 @@ const Login = (props: any) => {
   const setTheme = useSetRecoilState(themesSetting);
   useEffect(() => {
     if (getItem("userdata").token !== undefined) {
-      props.router.push("/dashboard");
-    }
+        props.router.push("/userDashboard");
+      }
     setTheme({
       header: false,
       sidebar: false,
@@ -42,11 +42,12 @@ const Login = (props: any) => {
   const [password, setPassword] = useState(true);
 
   const onSubmit = async (data: any) => {
-    props.router.push("/dashboard");
+    props.router.push("/userDashboard");
     setItem("userdata", {
       userid: "sam",
       username: "Samsul Arifin",
-      token: 12341212
+      token: 12341212,
+      role: "organiser"
     });
   };
 
@@ -55,7 +56,7 @@ const Login = (props: any) => {
       <div className="card card-outline card-primary">
         <div className="card-header text-center">
           <div className="h1">
-            <b>ADMIN </b>APP
+            <b>User </b>Module
           </div>
         </div>
         <div className="card-body">
