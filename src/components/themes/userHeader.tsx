@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { removeItem, toggleSidebarMenu } from "../utils";
 import { withRouter } from "next/router";
 
-const Header = (props: any) => {
+const UserHeader = (props: any) => {
   const [valueHideSidebar, setHideSidebar] = useRecoilState(toggleSidebarMenu);
 
   const handleToggleMenuSidebar = () => {
@@ -42,7 +42,7 @@ const Header = (props: any) => {
                 className="avatarProfile"
                 alt="Avatar"
               />{" "}
-              Sam <b className="caret"></b>
+              Aman <b className="caret"></b>
             </div>
             <div
               className={`dropdown-menu ${menu ? "show" : ""}`}
@@ -55,7 +55,7 @@ const Header = (props: any) => {
                 type="button"
                 className="dropdown-item"
                 onClick={() => {
-                  props.router.push("/admin");
+                  props.router.push("/userlogin");
                   removeItem("userdata");
                 }}
               >
@@ -70,4 +70,4 @@ const Header = (props: any) => {
   );
 };
 
-export default withRouter(Header);
+export default withRouter(UserHeader);

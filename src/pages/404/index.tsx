@@ -14,7 +14,7 @@ function PageNotFound() {
           </h3>
           <p>
             We could not find the page you were looking for. Meanwhile, you may{" "}
-            <Link href="/dashboard">return to dashboard</Link> or try using the
+            <Link href="/adminDashboard">return to dashboard</Link> or try using the
             search form.
           </p>
         </div>
