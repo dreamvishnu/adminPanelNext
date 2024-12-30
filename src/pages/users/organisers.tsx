@@ -1,11 +1,11 @@
 import { PanelContent } from "@/components";
 import React, { useState } from "react";
-import OrganisersList from "@/components/UsersComponent/OrganizersComponent/OrganisersList";
-import ToggleSection from "@/components/UsersComponent/OrganizersComponent/ToggleSection";
-import EarningsSection from "@/components/UsersComponent/OrganizersComponent/EarningsSection";
-import EventsSection from "@/components/UsersComponent/OrganizersComponent/EventsSection";
-import CommunitiesSection from "@/components/UsersComponent/OrganizersComponent/CommunitiesSection";
-import DeleteAccountButton from "@/components/UsersComponent/OrganizersComponent/DeleteAccountButton";
+import OrganisersList from "@/components/UsersComponent/AdminComponent/OrganisersList";
+import ToggleSection from "@/components/UsersComponent/AdminComponent/ToggleSection";
+import EarningsSection from "@/components/UsersComponent/AdminComponent/EarningsSection";
+import EventsSection from "@/components/UsersComponent/AdminComponent/EventsSection";
+import CommunitiesSection from "@/components/UsersComponent/AdminComponent/CommunitiesSection";
+import DeleteAccountButton from "@/components/UsersComponent/AdminComponent/DeleteAccountButton";
 
 import styles from "./MainStyles/organisersPage.module.scss";
 

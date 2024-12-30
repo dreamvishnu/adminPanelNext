@@ -1,16 +1,16 @@
 /* Main Container */
 .mainContainer {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   max-width: 100%;
 }
 
 /* Left Section */
 .pageContainer {
-  flex: 2 1;
+  flex: 3 1;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif;
 }
 
@@ -92,8 +92,8 @@
 
     .profileImageWrapper {
       position: absolute;
-      bottom: -70px;
-      left: 50%;
+      bottom: -80px;
+      left: 85%;
       transform: translateX(-50%);
       width: 150px;
       height: 150px;
@@ -149,7 +149,7 @@
     .organizerInfo {
       flex: 0.7;
       text-align: center;
-      margin-top: 50px;
+      margin-top: 60px;
 
       .organizerName {
         font-size: 1.2rem;

@@ -64,7 +64,7 @@ const OrganisersEvent: React.FC = () => {
                 </p>
               </div>
               <div className={styles.organizerInfo}>
-                <h3 className={styles.organizerName}>Organiser- Sakshi Kumari</h3>
+                <h3 className={styles.organizerName}>Sakshi Kumari</h3>
                 <button className={styles.viewButton}>View</button>
               </div>
             </div>
@@ -144,7 +144,7 @@ const OrganisersEvent: React.FC = () => {
           >
             <h4 className={styles.sectionHeading}>Attendee List</h4>
             <button className={styles.exportButton} onClick={handleExportCSV}>
-              Export to CSV
+              📥
             </button>
           </div>
           <table className={styles.attendeeTable}>
