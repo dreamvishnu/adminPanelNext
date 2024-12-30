@@ -1,0 +1,102 @@
+/* Tab Navigation Container */
+.tabContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Updated for 5 tabs */
+    position: relative;
+    width: 100%;
+    max-width: 100%; /* Increased width for 5 tabs */
+    margin: 20px auto; /* Added spacing from the top */
+    height: 50px;
+    background: linear-gradient(90deg, #6200ea, #03dac5);
+    border-radius: 30px;
+    overflow: hidden; /* Ensure no visible overflow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Individual Tab */
+  .tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px; /* Adjusted for better readability with 5 tabs */
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 2;
+    transition: color 0.3s ease, background 0.3s ease;
+    overflow: hidden; /* Ensure no visible overflow */
+    border-radius: 30px;
+  }
+  
+  /* Hover Effect for Tabs */
+  .tab:hover {
+    color: #000; /* Highlight tab text on hover */
+    background: rgba(255, 255, 255, 0.2); /* Subtle hover background effect */
+    border-radius: 30px;
+  }
+  
+  /* Active Tab Styling */
+  .tab.active {
+    color: #000000; /* Change text color for active tab */
+    border-radius: 30px;
+  }
+  
+  /* Fluid Indicator */
+  .indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%; /* Adjusted to fit 5 tabs */
+    height: 100%;
+    background: #ffffff;
+    border-radius: 30px;
+    z-index: 1;
+    transition: transform 0.3s ease, width 0.3s ease;
+  }
+  
+  /* Scrollable content */
+  .scrollableContent {
+    max-height: calc(100vh - 100px); /* Dynamically adjust to fit the viewport */
+    overflow-y: auto; /* Enable scrolling */
+    padding: 20px; /* Add padding around content */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  
+  .scrollableContent::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  
+  /* Responsive Adjustments */
+  @media screen and (max-width: 768px) {
+    .tabContainer {
+        max-width: 100%; /* Use full width for smaller screens */
+        height: 60px; /* Increase height for better touch usability */
+    }
+  
+    .tab {
+        font-size: 12px; /* Adjust text size for smaller screens */
+    }
+  
+    .indicator {
+        width: calc(100% / 5); /* Ensure indicator scales correctly */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .tabContainer {
+        grid-template-columns: 1fr 1fr; /* Show two tabs per row on smaller screens */
+        height: auto; /* Allow flexible height */
+        border-radius: 20px; /* Slightly reduced border-radius for smaller viewports */
+    }
+  
+    .tab {
+        padding: 10px; /* Add padding for touch usability */
+    }
+  
+    .indicator {
+        display: none; /* Hide the indicator for smaller viewports */
+    }
+  }
+  
