@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../OrganizersStyles/communitiesSection.module.scss";
+import styles from "../AdminStyles/communitiesSection.module.scss";
 
 const communities = [
   {

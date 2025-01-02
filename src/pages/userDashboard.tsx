@@ -6,6 +6,9 @@ import Help from "@/components/help/Help";
 import EventForm from "@/components/Organisers/OrganisersDashboard/EventForm"; // Adjust the path if necessary
 import { Box } from "@mui/material";
 import styles from "./userDashboard.module.css";
+import Ongoing from "@/components/Organisers/OrganisersDashboard/Ongoing";
+import PreviousEvent from "@/components/UsersComponent/OrganisersComponent/PreviousEvent/PreviousEvent";
+import Request from "@/components/UsersComponent/OrganisersComponent/Requests/Request";
 
 const UserDashboard = () => {
   const [activeTab, setActiveTab] = useState<"Ongoing" | "Previous Events" | "Request" | "Recommendation" | "Create an Events">("Ongoing");
@@ -27,9 +30,9 @@ const UserDashboard = () => {
 
   // Tab data for rendering dynamically
   const tabs = [
-    { name: "Ongoing", component: <Overview /> },
-    { name: "Previous Events", component: <Help /> },
-    { name: "Request", component: <div>Request Content</div> },
+    { name: "Ongoing", component: <Ongoing /> },
+    { name: "Previous Events", component: <PreviousEvent/> },
+    { name: "Request", component: <Request/> },
     { name: "Recommendation", component: <div>Recommendation Content</div> },
     { name: "Create an Events", component: <EventForm /> }, // Updated to include EventForm
   ];
