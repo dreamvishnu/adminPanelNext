@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../OrganizersStyles/organisersList.module.scss";
+import styles from "../AdminStyles/organisersList.module.scss";
 import { FaStar } from "react-icons/fa";
 
 interface Organiser {

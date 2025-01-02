@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../OrganizersStyles/toggleSection.module.scss";
+import styles from "../AdminStyles/toggleSection.module.scss";
 
 interface Props {
   toggles: boolean[];

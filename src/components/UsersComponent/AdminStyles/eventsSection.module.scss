@@ -85,3 +85,26 @@
     color: #ffd700;
   }
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: -20px;
+}
+
+.filterMenu {
+  padding: 20px;
+  width: 300px;
+}
+
+.filterMenu .MuiTextField-root {
+  margin-bottom: 15px;
+}
+

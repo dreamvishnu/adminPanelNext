@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import styles from "../AdminStyles/eventsSection.module.scss";
+import styles from "../../AdminStyles/eventsSection.module.scss";
 
 const events = [
   {
@@ -41,7 +41,7 @@ const events = [
   },
 ];
 
-const EventsSection: React.FC = () => {
+const OngoingEvents: React.FC = () => {
   const router = useRouter();
 
   const handleCardClick = (eventId: string) => {
@@ -51,7 +51,9 @@ const EventsSection: React.FC = () => {
 
   return (
     <section className={styles.container}>
+        <div className={styles.header}>
       <h2 className={styles.title}>Events</h2>
+      </div>
       <ul className={styles.eventsList}>
         {events.map((event, index) => (
           <li
@@ -75,4 +77,4 @@ const EventsSection: React.FC = () => {
   );
 };
 
-export default EventsSection;
+export default OngoingEvents;

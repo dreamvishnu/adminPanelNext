@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../OrganizersStyles/earningsSection.module.scss";
+import styles from "../AdminStyles/earningsSection.module.scss";
 
 interface Props {
   earnings: string;

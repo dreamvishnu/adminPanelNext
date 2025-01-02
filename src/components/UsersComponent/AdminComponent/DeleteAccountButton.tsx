@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../OrganizersStyles/deleteAccountButton.module.scss";
+import styles from "../AdminStyles/deleteAccountButton.module.scss";
 
 const DeleteAccountButton: React.FC = () => {
   const handleDelete = () => {
