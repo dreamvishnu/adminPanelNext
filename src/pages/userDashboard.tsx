@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { getItem, PanelContent } from "@/components";
 import Overview from "@/components/overview/Overview";
 import Help from "@/components/help/Help";
+import EventForm from "@/components/Organisers/OrganisersDashboard/EventForm"; // Adjust the path if necessary
 import { Box } from "@mui/material";
 import styles from "./userDashboard.module.css";
 
@@ -30,7 +31,7 @@ const UserDashboard = () => {
     { name: "Previous Events", component: <Help /> },
     { name: "Request", component: <div>Request Content</div> },
     { name: "Recommendation", component: <div>Recommendation Content</div> },
-    { name: "Create an Events", component: <div>Create an Events Content</div> },
+    { name: "Create an Events", component: <EventForm /> }, // Updated to include EventForm
   ];
 
   // Find the active tab index for indicator positioning
