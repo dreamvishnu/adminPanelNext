@@ -1,0 +1,91 @@
+.step3Container {
+    padding: 100px;
+  }
+  
+  .heading {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #4a148c;
+    margin-bottom: 20px;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .eventTypeButton {
+    flex: 1;
+    padding: 50px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    background: #fff;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    
+    &.selected {
+      border-color: #6a0dad;
+      background: #f0e6f7;
+    }
+  
+    div {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+  
+    small {
+      color: #666;
+    }
+  }
+  
+  .subheading {
+    margin: 50px 0 10px;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #4a148c;
+
+  }
+  
+  .ticketDetails {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .formGroup {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .ticketinput {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+  }
+  
+  .priceinput {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+  }
+
+  .inputWithSymbol {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  
+    span {
+      font-size: 1.2rem;
+    }
+  
+    input {
+      flex: 1;
+    }
+  }
+  

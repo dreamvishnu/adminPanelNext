@@ -1,0 +1,42 @@
+.step2Container {
+    text-align: left;
+    padding: 100px;
+  }
+  
+  .heading {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #4a148c;
+    margin-bottom: 20px;
+  }
+  
+  .uploadContainer {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    position: relative;
+    background-color: #f9f9f9;
+  }
+  
+  .uploadField {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .uploadField:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .instructions {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+  }
+  
