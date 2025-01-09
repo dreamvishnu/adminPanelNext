@@ -1,52 +1,68 @@
+.container {
+  padding: 20px;
+  background: white;
+  border-radius: 20px;
+  width: 100%
+}
+
+.card {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  // padding: 20px;
+  // background-color: #fff;
+  border-radius: 20px;
+  // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .progressBar {
-  // display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 20px;
+  // padding: 20px;
 
   .title {
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 800;
     color: #5e217e;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
   }
 
   .barContainer {
     position: relative;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    width: 100%;
-    max-width: 800px;
-    margin-top: 20px;
+    align-items: center;
+    width: calc(100% - 40px); /* Adjust to fit circles */
+    margin: 20px 20px 0; /* Add padding around */
+    padding: 0;
   }
 
   .line {
     position: absolute;
-    top: 10%;
-    left: 0;
-    right: 0;
+    top: 50%;
+    left: 15px; /* Align with the first circle */
+    right: 40px; /* Align with the last circle */
     height: 4px;
     background-color: #c4c4c4;
     z-index: 0;
 
-    &.active {
-      background-color: #5e217e;
-    }
+    // &.active {
+    //   background-color: #5e217e;
+    // }
   }
 
   .step {
     position: relative;
-    display: flex;
+    // display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 1;
 
     .circle {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background-color: #fff;
       border: 4px solid #c4c4c4;
@@ -56,57 +72,48 @@
 
       &.active {
         border-color: #5e217e;
-        background-color: #fff;
       }
     }
 
     .label {
-      margin-top: 50px;
-      font-size: 1rem;
+      padding-top: 10px; /* Adjust the gap between the label and the circle */
+      font-size: 0.9rem;
       font-weight: bold;
       color: #5e217e;
       text-align: center;
+      position: relative; /* Ensure it aligns correctly below the circle */
+      top: 20px; /* Push it slightly down to align perfectly */
     }
   }
 
   .stepbuttons {
-    padding: 10px 20px; /* Slightly larger buttons */
-    // background: #4b0082;
-    color: #fff;
-    border: none;
-    max-width: fit-content;
     display: flex;
-    gap: 20px;
-    border-radius: 20px; /* Softer corners */
-    // font-size: 18px; /* Increased size */
-    justify-content: space-between;
-    font-weight: 700; /* Bolder buttons */
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    gap: 15px;
+    margin-top: 20px;
 
-    // &:hover {
-    //   background: #371061;
-    //   transform: translateY(-2px); /* Subtle lift on hover */
-    // }
-  }
-  .StepButton{
-    padding: 10px 20px; /* Slightly larger buttons */
-    background: #4b0082;
-    color: #fff;
-    border: none;
-    max-width: fit-content;
-    border-radius: 20px; /* Softer corners */
-    font-size: 18px; /* Increased size */
-    font-weight: 700; /* Bolder buttons */
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    .StepButton {
+      width: 100%;
+      padding: 10px 20px;
+      background: #4b0082;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
 
-    &:hover {
-      background: #371061;
-      transform: translateY(-2px); /* Subtle lift on hover */
+      &:hover {
+        background: #371061;
+        transform: translateY(-2px);
+      }
+
+      &:disabled {
+        background: #c4c4c4;
+        cursor: not-allowed;
+      }
     }
   }
-
 
   .step:not(:last-child) {
     flex: 1;
@@ -114,6 +121,7 @@
 
   .step .circle {
     position: relative;
-    top: -2px; /* Ensures the line passes through the circle's diameter */
+    top: 0.5px;
+    transform: translateY(50%); /* Align circles vertically */
   }
 }

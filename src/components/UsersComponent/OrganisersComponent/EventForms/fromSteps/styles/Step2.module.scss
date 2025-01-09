@@ -1,6 +1,10 @@
 .step2Container {
-    text-align: left;
-    padding: 100px;
+  max-width: 100%; /* Centered, modern layout */
+  margin: 70px;
+  padding: 30px;
+  background: #ffffff; /* Cleaner white background */
+  border-radius: 20px; /* Softer corners */
+  // box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Subtle elevation */
   }
   
   .heading {

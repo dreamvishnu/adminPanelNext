@@ -1,16 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./styles/Step2.module.scss";
 
 interface Step2Props {
-  data: Record<string, any>; // Ensure data is always an object
+  data: Record<string, any>;
   onDataChange: (data: any) => void;
 }
 
 const Step2: React.FC<Step2Props> = ({ data = {}, onDataChange }) => {
+  const [bannerImage, setBannerImage] = useState(data.bannerImage || "");
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      onDataChange({ ...data, bannerImage: file });
+      const fileURL = URL.createObjectURL(file);
+      setBannerImage(fileURL);
+      onDataChange({ ...data, bannerImage: fileURL }); // Save the file URL in data
     }
   };
 

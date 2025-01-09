@@ -26,6 +26,7 @@ const AdminDashboard = () => {
 
   return (
     <PanelContent headerContent>
+      <div className={styles.mainContainer}></div>
       {/* Tab Navigation */}
       <Box className="scrollableContent">
         <Box className={styles.tabContainer}>
