@@ -14,7 +14,11 @@ const Step3: React.FC<Step3Props> = ({ data = {}, onDataChange }) => {
     if (type === "Free Event") {
       onDataChange({ ...data, eventType: type, ticketName: "", ticketPrice: "" });
     }
+    else if(type === "Ticketed Event") {
+      onDataChange({ ...data, eventType: type, ticketName: "", ticketPrice: "" });
+    }
   };
+  console.log(data)
 
   const handleInputChange = (field: string, value: string) => {
     onDataChange({ ...data, [field]: value });

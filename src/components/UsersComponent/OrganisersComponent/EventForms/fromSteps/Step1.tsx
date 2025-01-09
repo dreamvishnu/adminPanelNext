@@ -31,20 +31,20 @@ const Step1: React.FC<Step1Props> = ({ data, onDataChange, onNext, onPrevious })
 
         {/* Event Category */}
         <div className={styles.formGroup}>
-          <label htmlFor="eventCategory">Event Category</label>
+          <label htmlFor="eventCategory">Event Type</label>
           <select
             id="eventCategory"
             value={data.eventCategory}
             onChange={(e) => handleChange("eventCategory", e.target.value)}
           >
-            <option value="">Select event category</option>
-            <option value="AI">AI</option>
-            <option value="Startups">Startups</option>
-            <option value="Docker">Docker</option>
+            <option value="">Select event type</option>
+            <option value="Physical">Physical</option>
+            <option value="Virtual">Virtual</option>
+            <option value="Hybrid">Hybrid</option>
           </select>
         </div>
 
-        {/* Event Type */}
+        {/* Event Type
         <div className={styles.formGroup}>
           <label>Event Type</label>
           <div className={styles.checkboxGroup}>
@@ -61,7 +61,7 @@ const Step1: React.FC<Step1Props> = ({ data, onDataChange, onNext, onPrevious })
               </label>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Date and Time */}
         <h3 className={styles.subheading}>Date and Time</h3>

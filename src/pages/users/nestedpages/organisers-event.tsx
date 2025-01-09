@@ -1,166 +1,210 @@
 import React from "react";
 import { PanelContent } from "@/components"; // Assuming PanelContent is your global layout
-import styles from "./OrganisersEvent.module.scss"; // Custom styles
+import styles from "./OrganisersEvent.module.scss";
 
 const OrganisersEvent: React.FC = () => {
-  const handleExportCSV = () => {
-    const rows = [
-      ["Name", "Email ID", "Phone Number"],
-      ...Array.from({ length: 10 }).map((_, index) => [
-        `Attendee ${index + 1}`,
-        `attendee${index + 1}@example.com`,
-        `+91-987654321${index}`,
-      ]),
-    ];
+  // Hardcoded event data
+  const eventData = {
+    name: "Sample Event",
+    eventType: "Conference",
+    price: "$50",
+    date: "2025-01-15",
+    startTime: "10:00 AM",
+    endTime: "5:00 PM",
+    venueLocation: "123 Event Street, Cityville",
+    mapImage: "https://t4.ftcdn.net/jpg/03/38/37/73/360_F_338377354_1Y6oyGrvaae2kqY3YS07b6X4NDKZntne.jpg",
+    organizerImage: "https://via.placeholder.com/150",
+    organizerName: "John Doe",
+    speakerImage: "https://via.placeholder.com/150",
+    speakerName: "Dr. Jane Smith",
+    sponsorImage: "https://via.placeholder.com/150",
+    sponsorName: "Tech Corp",
+    venueImage: "https://via.placeholder.com/150",
+    venueName: "Event Hall",
+    foodImage: "https://via.placeholder.com/150",
+    foodName: "Catered Snacks",
+    description: "This is a detailed description of the event.",
+    bannerImage: "https://via.placeholder.com/600x300",
+  };
 
-    const csvContent =
-      "data:text/csv;charset=utf-8," +
-      rows.map((row) => row.join(",")).join("\n");
+  const attendeeData = [
+    { name: "Alice Johnson", email: "alice@example.com", phone: "123-456-7890" },
+    { name: "Bob Smith", email: "bob@example.com", phone: "987-654-3210" },
+    { name: "Charlie Brown", email: "charlie@example.com", phone: "456-789-0123" },
+  ];
 
-    const encodedUri = encodeURI(csvContent);
+  const downloadCSV = () => {
+    const csvRows = [
+      ["Name", "Email Id", "Phone No."],
+      ...attendeeData.map((row) => [row.name, row.email, row.phone]),
+    ]
+      .map((row) => row.join(","))
+      .join("\n");
+
+    const blob = new Blob([csvRows], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+
     const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "attendees.csv");
-    document.body.appendChild(link);
+    link.href = url;
+    link.download = "attendee_details.csv";
     link.click();
-    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
   };
 
   return (
-    <PanelContent headerContent title="">
+    <PanelContent headerContent={<h1>Event Details</h1>} title="">
       <div className={styles.mainContainer}>
-        {/* Left Column */}
-        <div className={styles.pageContainer}>
-          {/* Event Card */}
-          <div className={styles.eventCard}>
-            <div className={styles.banner}>
+        {/* Left Section: OrganisersEvent Content */}
+        <div className={styles.leftSection}>
+          <div className={styles.container}>
+            {/* Card 1: Banner and Basic Info */}
+            <div className={styles.card}>
               <img
-                src="https://res.cloudinary.com/dg7ovb7da/image/upload/w_500,h_300,c_fill/myprivate/banner4.jpg"
+                src={eventData.bannerImage || ""}
                 alt="Event Banner"
                 className={styles.bannerImage}
               />
-              <div className={styles.profileImageWrapper}>
+              <div className={styles.cardContent}>
+                <h2 className={styles.eventName}>{eventData.name}</h2>
+                <p className={styles.eventType}>
+                  Event Type: {eventData.eventType}
+                </p>
+                <p className={styles.price}>Price: {eventData.price}</p>
+                <h3 className={styles.sectionHeading}>Date and Time</h3>
+                <div className={styles.datetime}>
+                  <i className={`fas fa-calendar ${styles.icon}`} />
+                  <span>{eventData.date}</span>
+                </div>
+                <div className={styles.datetime}>
+                  <i className={`fas fa-clock ${styles.icon}`} />
+                  <span>
+                    {eventData.startTime} - {eventData.endTime}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2: Venue */}
+            <div className={styles.card}>
+              <h3 className={styles.sectionHeading}>Venue</h3>
+              <div className={styles.location}>
+                <i className={`fas fa-map-marker-alt ${styles.icon}`} />
+                <p>{eventData.venueLocation}</p>
+              </div>
+              <img
+                src={eventData.mapImage}
+                alt="Venue Map"
+                className={styles.mapImage}
+              />
+            </div>
+
+            {/* Card 3: Organizer, Speaker, Sponsor */}
+            <div className={styles.card}>
+              <h3 className={styles.sectionHeading}>Organizer</h3>
+              <div className={styles.inlineInfo}>
                 <img
-                  src="https://res.cloudinary.com/dg7ovb7da/image/upload/w_500,h_300,c_fill/myprivate/banner4.jpg"
+                  src={eventData.organizerImage}
                   alt="Organizer"
                   className={styles.profileImage}
                 />
+                <span className={styles.inlineText}>
+                  {eventData.organizerName}
+                </span>
               </div>
-            </div>
-            <div className={styles.detailsContainer}>
-              <div className={styles.eventDetails}>
-                <h2 className={styles.eventName}>STARTUP TALKS</h2>
-                <h4 className={styles.sectionHeading}>Description</h4>
-                <p className={styles.date}>
-                  This event aims in bringing some brilliant minds behind the
-                  greatest startups India has recently seen.
-                </p>
-                <h4 className={styles.sectionHeading}>Date & Time</h4>
-                <p className={styles.date}>Saturday, 2 December 2024</p>
-                <p className={styles.time}>6:30 PM - 9:30 PM</p>
-                <h4 className={styles.sectionHeading}>Venue</h4>
-                <p className={styles.venue}>
-                  Bal Gandharva Rang Mandir, Near Junction Of 24th & 32nd Road & Patwardhan Park, Off Linking Road, Bandra West, Mumbai, India
-                </p>
-              </div>
-              <div className={styles.organizerInfo}>
-                <h3 className={styles.organizerName}>Sakshi Kumari</h3>
-                <button className={styles.viewButton}>View</button>
-              </div>
-            </div>
-          </div>
 
-          {/* Grid Card */}
-          <div className={styles.detailsGridCard}>
-            <div className={styles.gridContainer}>
-              <div className={styles.gridItem}>
-                <h4 className={styles.gridHeading}>Speaker</h4>
-                <div className={styles.inlineDetails}>
-                  <img
-                    src="https://res.cloudinary.com/dg7ovb7da/image/upload/w_500,h_300,c_fill/myprivate/banner4.jpg"
-                    alt="Speaker"
-                    className={styles.inlineImage}
-                  />
-                  <div>
-                    <p className={styles.inlineName}>Amit Nikhade</p>
-                    <button className={styles.inlineButton}>View</button>
+              <div className={styles.gridContainer}>
+                <div className={styles.gridItem}>
+                  <h3 className={styles.sectionHeading}>Speaker</h3>
+                  <div className={styles.inlineInfo}>
+                    <img
+                      src={eventData.speakerImage}
+                      alt="Speaker"
+                      className={styles.profileImage}
+                    />
+                    <span className={styles.inlineText}>
+                      {eventData.speakerName}
+                    </span>
+                  </div>
+                </div>
+                <div className={styles.gridItem}>
+                  <h3 className={styles.sectionHeading}>Sponsor</h3>
+                  <div className={styles.inlineInfo}>
+                    <img
+                      src={eventData.sponsorImage}
+                      alt="Sponsor"
+                      className={styles.profileImage}
+                    />
+                    <span className={styles.inlineText}>
+                      {eventData.sponsorName}
+                    </span>
+                  </div>
+                </div>
+                <div className={styles.gridItem}>
+                  <h3 className={styles.sectionHeading}>Venue</h3>
+                  <div className={styles.inlineInfo}>
+                    <img
+                      src={eventData.venueImage}
+                      alt="Venue"
+                      className={styles.profileImage}
+                    />
+                    <span className={styles.inlineText}>
+                      {eventData.venueName}
+                    </span>
+                  </div>
+                </div>
+                <div className={styles.gridItem}>
+                  <h3 className={styles.sectionHeading}>Food</h3>
+                  <div className={styles.inlineInfo}>
+                    <img
+                      src={eventData.foodImage}
+                      alt="Food"
+                      className={styles.profileImage}
+                    />
+                    <span className={styles.inlineText}>
+                      {eventData.foodName}
+                    </span>
                   </div>
                 </div>
               </div>
-              <div className={styles.gridItem}>
-                <h4 className={styles.gridHeading}>Sponsor</h4>
-                <div className={styles.inlineDetails}>
-                  <img
-                    src="https://res.cloudinary.com/dg7ovb7da/image/upload/w_500,h_300,c_fill/myprivate/banner4.jpg"
-                    alt="Sponsor"
-                    className={styles.inlineImage}
-                  />
-                  <div>
-                    <p className={styles.inlineName}>IntelliCredence</p>
-                    <button className={styles.inlineButton}>View</button>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.gridItem}>
-                <h4 className={styles.gridHeading}>Venue</h4>
-                <div className={styles.inlineDetails}>
-                  <img
-                    src="https://res.cloudinary.com/dg7ovb7da/image/upload/w_500,h_300,c_fill/myprivate/banner4.jpg"
-                    alt="Venue"
-                    className={styles.inlineImage}
-                  />
-                  <div>
-                    <p className={styles.inlineName}>RK Towers</p>
-                    <button className={styles.inlineButton}>View</button>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.gridItem}>
-                <h4 className={styles.gridHeading}>Caterer</h4>
-                <div className={styles.inlineDetails}>
-                  <img
-                    src="https://res.cloudinary.com/dg7ovb7da/image/upload/w_500,h_300,c_fill/myprivate/banner4.jpg"
-                    alt="Caterer"
-                    className={styles.inlineImage}
-                  />
-                  <div>
-                    <p className={styles.inlineName}>Amrit Cafe</p>
-                    <button className={styles.inlineButton}>View</button>
-                  </div>
-                </div>
-              </div>
+            </div>
+
+            {/* Card 4: Event Description */}
+            <div className={styles.card}>
+              <h3 className={styles.sectionHeading}>Event Description</h3>
+              <p className={styles.description}>{eventData.description}</p>
             </div>
           </div>
         </div>
 
-        {/* Right Column */}
-        <div className={styles.tableContainer}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <h4 className={styles.sectionHeading}>Attendee List</h4>
-            <button className={styles.exportButton} onClick={handleExportCSV}>
-              📥
-            </button>
-          </div>
-          <table className={styles.attendeeTable}>
-            <thead>
-              <tr>
-                <th>Name</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Array.from({ length: 10 }).map((_, index) => (
-                <tr key={index}>
-                  <td>Attendee {index + 1}</td>
+        {/* Right Section: Attendee Details */}
+        <div className={styles.rightSection}>
+          <div className={styles.attendeeTableContainer}>
+            <div className={styles.tableHeader}>
+              <h3>Attendee Details</h3>
+              <button onClick={downloadCSV} className={styles.downloadButton}>
+                Download CSV
+              </button>
+            </div>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email Id</th>
+                  <th>Phone No.</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {attendeeData.map((attendee, index) => (
+                  <tr key={index}>
+                    <td>{attendee.name}</td>
+                    <td>{attendee.email}</td>
+                    <td>{attendee.phone}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </PanelContent>
