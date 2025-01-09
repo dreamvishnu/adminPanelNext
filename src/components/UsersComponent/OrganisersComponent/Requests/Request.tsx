@@ -17,7 +17,7 @@ const mockData = {
       id: 2,
       name: "Docker",
       type: "Sponsors",
-      image: "https://logos-world.net/wp-content/uploads/2021/02/Docker-Logo-2015-2017.png",
+      image: "https://tech.osteel.me/images/2020/03/04/docker-introduction-01.jpg",
     },
     {
       id: 3,
@@ -29,7 +29,7 @@ const mockData = {
       id: 4,
       name: "Intellicredence",
       type: "Sponsors",
-      image: "https://www.intellicredence.com/assets/images/logo.png",
+      image: "https://www.intellicredence.com/assets/images/logoicon.png",
     },
   ],
   speakers: [
@@ -194,17 +194,10 @@ const Request: React.FC = () => {
 
   return (
     <section className={styles.container}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Requests</h2>
-        <div className={styles.actions}>
-          <IconButton onClick={handleFilterClick}>
-            <FilterAltIcon fontSize="large" />
-          </IconButton>
-          <IconButton onClick={handleSortClick}>
-            <SortIcon fontSize="large" />
-          </IconButton>
-        </div>
-      </div>
+      {/* <div className={styles.header}> */}
+        {/* <h2 className={styles.title}>Requests</h2> */}
+       
+      {/* </div> */}
 
       <Menu
         anchorEl={filterAnchor}
@@ -254,6 +247,14 @@ const Request: React.FC = () => {
         <div key={key} className={styles.section}>
           <div className={styles.sectionHeader}>
             <h3>{key.charAt(0).toUpperCase() + key.slice(1)}</h3>
+            <div className={styles.actions}>
+          <IconButton onClick={handleFilterClick}>
+            <FilterAltIcon fontSize="large" />
+          </IconButton>
+          <IconButton onClick={handleSortClick}>
+            <SortIcon fontSize="large" />
+          </IconButton>
+        </div>
           </div>
           <div className={styles.cardsContainer}>
             {value.length > 0 ? (

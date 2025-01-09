@@ -9,6 +9,7 @@ import styles from "./userDashboard.module.css";
 import Ongoing from "@/components/Organisers/OrganisersDashboard/Ongoing";
 import PreviousEvent from "@/components/UsersComponent/OrganisersComponent/PreviousEvent/PreviousEvent";
 import Request from "@/components/UsersComponent/OrganisersComponent/Requests/Request";
+import Recommendations from "@/components/Organisers/OrganisersDashboard/Recommedations";
 
 const UserDashboard = () => {
   const [activeTab, setActiveTab] = useState<"Ongoing" | "Previous Events" | "Request" | "Recommendation" | "Create an Events">("Ongoing");
@@ -33,8 +34,8 @@ const UserDashboard = () => {
     { name: "Ongoing", component: <Ongoing /> },
     { name: "Previous Events", component: <PreviousEvent/> },
     { name: "Request", component: <Request/> },
-    { name: "Recommendation", component: <div>Recommendation Content</div> },
-    { name: "Create an Events", component: <EventForm /> }, // Updated to include EventForm
+    { name: "Recommendation", component: <Recommendations/> },
+    { name: "Create an Events", component: <EventForm /> },
   ];
 
   // Find the active tab index for indicator positioning
