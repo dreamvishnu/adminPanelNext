@@ -44,7 +44,7 @@ const OrganisersEvent: React.FC = () => {
   };
 
   return (
-    <PanelContent headerContent={<h1>Event Details</h1>} title="">
+    <PanelContent headerContent title="Event Details">
       <div className={styles.mainContainer}>
         {/* Left Section: OrganisersEvent Content */}
         <div className={styles.leftSection}>

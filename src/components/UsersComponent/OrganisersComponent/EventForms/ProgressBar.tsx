@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Ongoing from "../../../Organisers/OrganisersDashboard/Ongoing"; // Import the Ongoing component
 import Step1 from "./fromSteps/Step1";
 import Step2 from "./fromSteps/Step2";
 import Step3 from "./fromSteps/Step3";
@@ -8,16 +9,34 @@ import styles from "../../OrganisersStyles/EventFormsStyles/ProgressBar.module.s
 
 interface ProgressBarProps {
   steps: string[];
+  setActiveTab: React.Dispatch<
+    React.SetStateAction<"Ongoing" | "Previous Events" | "Request" | "Recommendation" | "Create an Events">
+  >;
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ steps }) => {
+
+const ProgressBar: React.FC<ProgressBarProps> = ({ steps, setActiveTab }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<Record<string, any>>({});
+  const [isSubmitted, setIsSubmitted] = useState(false); // Track submission
+
+  useEffect(() => {
+    updateProgressLine();
+  }, [currentStep]);
+
+  const updateProgressLine = () => {
+    const totalSteps = steps.length - 1; // Total steps minus 1 to calculate percentage
+    const progressPercentage = (currentStep / totalSteps) * 100;
+    const progressBarLine = document.querySelector(`.${styles.line}`) as HTMLElement;
+
+    if (progressBarLine) {
+      progressBarLine.style.width = `${progressPercentage}%`;
+    }
+  };
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
       setCurrentStep((prev) => prev + 1);
-      console.log(formData);
     }
   };
 
@@ -32,6 +51,25 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ steps }) => {
       ...prev,
       [stepName]: data,
     }));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch('/api/save-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData), // Send the formData to the API
+      });
+  
+      if (!response.ok) throw new Error('Failed to save data.');
+  
+      const result = await response.json();
+      console.log('Event added successfully with eventID:', result.eventID);
+  
+      setActiveTab("Ongoing"); // Switch to Ongoing tab after submission
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
   };
 
   const renderStep = () => {
@@ -78,50 +116,57 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ steps }) => {
     }
   };
 
+  if (isSubmitted) {
+    // Render the Ongoing component after submission
+    return <Ongoing />;
+  }
+
   return (
     <section className={styles.container}>
-    <div className={styles.card}>
-    <div className={styles.progressBar}>
-      <h2 className={styles.title}>Create a New Event</h2>
-      <div className={styles.barContainer}>
-        <div className={`${styles.line} ${currentStep > 0 ? styles.active : ""}`}></div>
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            className={`${styles.step} ${index <= currentStep ? styles.active : ""}`}
-          >
-            <div className={`${styles.circle} ${index <= currentStep ? styles.active : ""}`}></div>
-            <span className={styles.label}>{step}</span>
-          </div>
-        ))}
-      </div>
+      <div className={styles.card}>
+        <div className={styles.progressBar}>
+          <h2 className={styles.title}>Create a New Event</h2>
 
-      <div className={styles.stepContent}>{renderStep()}</div>
-      <div className={styles.buttonContainer}>
-      <div className={styles.stepbuttons}>
-        <button
-          onClick={handlePrevious}
-          disabled={currentStep === 0}
-          className={styles.StepButton}
-        >
-          Previous
-        </button>
-        {currentStep === steps.length - 1 ? (
-          <button
-            onClick={() => console.log("Final Form Data:", formData)}
-            className={styles.StepButton}
-          >
-            Submit
-          </button>
-        ) : (
-          <button onClick={handleNext} className={styles.StepButton}>
-            Next
-          </button>
-        )}
+          <div className={styles.barContainer}>
+            <div className={styles.lineContainer}>
+              <div className={styles.line}></div>
+            </div>
+            {steps.map((_, index) => (
+              <div
+                key={index}
+                className={`${styles.step} ${index <= currentStep ? styles.active : ""}`}
+              >
+                <div className={`${styles.circle} ${index <= currentStep ? styles.active : ""}`}>
+                  {index + 1}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className={styles.stepContent}>{renderStep()}</div>
+
+          <div className={styles.stepbuttons}>
+            <button
+              onClick={handlePrevious}
+              disabled={currentStep === 0}
+              className={styles.StepButton}
+            >
+              Previous
+            </button>
+            {currentStep === steps.length - 1 ? (
+              <button
+              onClick={handleSubmit}
+                className={styles.StepButton}
+              >
+                Submit
+              </button>
+            ) : (
+              <button onClick={handleNext} className={styles.StepButton}>
+                Next
+              </button>
+            )}
+          </div>
+        </div>
       </div>
-      </div>
-    </div>
-    </div>
     </section>
   );
 };

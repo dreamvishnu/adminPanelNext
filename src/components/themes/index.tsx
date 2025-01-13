@@ -4,11 +4,14 @@ import {
   useRecoilValue,
   useSetRecoilState,
 } from "recoil";
+import { Suspense, lazy, useEffect, useState, useCallback } from "react";
+import { withRouter } from "next/router";
 
 const Footer = lazy(() => import("./footer"));
 const Header = lazy(() => import("./header"));
 const UserHeader = lazy(() => import("./userHeader"));
 const Sidebar = lazy(() => import("./sidebar"));
+const OrganiserSidebar = lazy(() => import("./userSidebar/sidebar"));
 
 import { themesSetting } from "@/recoil";
 import { screenSize, toggleSidebarMenu } from "../utils";
@@ -20,15 +23,17 @@ import {
   removeWindowClass,
   useWindowSize,
 } from "../utils/function";
-import { Suspense, lazy, useEffect, useState } from "react";
-import { withRouter } from "next/router";
+import { useUser } from "../context/UserContext";
 
 const Layout = ({ children, router }: any) => {
   const theme = useRecoilValue(themesSetting);
   const screen = useRecoilValue(screenSize);
-  const sidebar = useRecoilValue(toggleSidebarMenu);
-  const setSizeValue = useSetRecoilState(screenSize);
   const [valueHideSidebar, setHideSidebar] = useRecoilState(toggleSidebarMenu);
+  const setSizeValue = useSetRecoilState(screenSize);
+  const { user } = useUser();
+  const windowSize = useWindowSize();
+  const setTheme = useSetRecoilState(themesSetting);
+  const [loading, setLoading] = useState(true);
 
   const handleToggleMenuSidebar = () => {
     setHideSidebar({
@@ -36,75 +41,104 @@ const Layout = ({ children, router }: any) => {
     });
   };
 
-  const windowSize = useWindowSize();
-  const setTheme = useSetRecoilState(themesSetting);
-  const [loading, setloading] = useState(true);
+  const manageAdminSidebar = useCallback(() => {
+    if (valueHideSidebar.menuSidebarCollapsed && screen.screenSize === "lg") {
+      addWindowClass("sidebar-collapse");
+    } else if (valueHideSidebar.menuSidebarCollapsed && screen.screenSize === "xs") {
+      addWindowClass("sidebar-open");
+    } else if (!valueHideSidebar.menuSidebarCollapsed && screen.screenSize !== "lg") {
+      addWindowClass("sidebar-closed");
+      addWindowClass("sidebar-collapse");
+    }
+  }, [valueHideSidebar.menuSidebarCollapsed, screen.screenSize]);
+
+  const manageOrganiserSidebar = useCallback(() => {
+    if (valueHideSidebar.menuSidebarCollapsed && screen.screenSize === "lg") {
+      addWindowClass("sidebar-collapse");
+    } else if (valueHideSidebar.menuSidebarCollapsed && screen.screenSize === "xs") {
+      addWindowClass("sidebar-open");
+    } else if (!valueHideSidebar.menuSidebarCollapsed && screen.screenSize !== "lg") {
+      addWindowClass("sidebar-closed");
+      addWindowClass("sidebar-collapse");
+    }
+  }, [valueHideSidebar.menuSidebarCollapsed, screen.screenSize]);
 
   useEffect(() => {
     const { pathname } = router;
 
-    // Log the current pathname for debugging
     console.log("Current Pathname:", pathname);
+    console.log("User Data from Context:", user);
 
-    const userData = getItem("userdata"); // Assuming this fetches user data
-    console.log("User Data:", userData);
-    if (!userData?.token) {
-      // Redirect based on pathname
+    // Redirect logic based on authentication and roles
+    if (!user?.token) {
       if (pathname.startsWith("/admin")) {
-        console.log("Redirecting to /admin login");
-        router.push("/admin"); // Redirect to admin login
+        router.push("/admin");
       } else if (pathname.startsWith("/user")) {
-        console.log("Redirecting to /login (organiser login)");
         router.push("/userlogin");
       }
-    }else if (pathname.startsWith("/admin") && userData.token !== 12341210) {
-      // Prevent non-admin users from accessing admin pages
+    } else if (pathname.startsWith("/admin") && user.role !== "admin") {
       router.push("/admin");
-    } else if (pathname.startsWith("/userlogin") && userData.token !== 12341212) {
-      // Prevent non-organisers from accessing user dashboard
+    } else if (pathname.startsWith("/user") && user.role !== "organiser") {
       router.push("/userlogin");
     }
-    removeWindowClass("sidebar-closed");
-    removeWindowClass("sidebar-collapse");
-    removeWindowClass("sidebar-open");
 
     const size = calculateWindowSize(windowSize.width);
     if (screen.screenSize !== size) {
       setSizeValue({ screenSize: size });
     }
 
-    if (sidebar.menuSidebarCollapsed && screen.screenSize === "lg") {
-      addWindowClass("sidebar-collapse");
-    } else if (sidebar.menuSidebarCollapsed && screen.screenSize === "xs") {
-      addWindowClass("sidebar-open");
-    } else if (!sidebar.menuSidebarCollapsed && screen.screenSize !== "lg") {
-      addWindowClass("sidebar-closed");
-      addWindowClass("sidebar-collapse");
+    // Sidebar Management Based on Role
+    if (user?.role === "admin") {
+      manageAdminSidebar();
+    } else if (user?.role === "organiser") {
+      manageOrganiserSidebar();
     }
 
     setTimeout(() => {
-      setloading(false);
+      setLoading(false);
     }, 1000);
-  }, [windowSize, sidebar, setTheme, screen.screenSize, setSizeValue, router]);
+
+    return () => {
+      removeWindowClass("sidebar-closed");
+      removeWindowClass("sidebar-collapse");
+      removeWindowClass("sidebar-open");
+    };
+  }, [
+    router,
+    user,
+    windowSize,
+    screen.screenSize,
+    valueHideSidebar,
+    setSizeValue,
+    manageAdminSidebar,
+    manageOrganiserSidebar,
+  ]);
 
   RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
   const renderHeader = () => {
-    const { pathname } = router;
-
-    if (pathname.startsWith("/adminDashboard")) {
-      return <Header />; // Default header for /dashboard
-    } else if (pathname.startsWith("/userDashboard")) {
-      return <UserHeader />; // User-specific header for /userDashboard
+    if (user?.role === "admin") {
+      return <Header />;
+    } else if (user?.role === "organiser") {
+      return <UserHeader />;
     }
-    return null; // No header for other paths
+    return null;
+  };
+
+  const renderSidebar = () => {
+    if (user?.role === "admin") {
+      return <Sidebar />;
+    } else if (user?.role === "organiser") {
+      return <OrganiserSidebar />;
+    }
+    return null;
   };
 
   return (
     <Suspense fallback={<LoadingApp />}>
       <div className="wrapper">
         {theme.header && renderHeader()}
-        {theme.sidebar && <Sidebar />}
+        {theme.sidebar && renderSidebar()}
         {theme.content && children}
         {theme.footer && <Footer />}
 

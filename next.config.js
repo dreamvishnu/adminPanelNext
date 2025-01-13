@@ -13,6 +13,10 @@
           destination: "/login/userLogin", // Serve admin login
         },
         {
+          source: "/login",
+          destination: "/login/userLogin", // Serve admin login
+        },
+        {
           source: "/userDashboard",
           destination: "/userDashboard", // Serve admin login
         },
@@ -23,6 +27,10 @@
         {
           source: "/dashboardAdmin",
           destination: "/adminDashboard", // Serve admin dashboard
+        },
+        {
+          source: "/eventDetails",
+          destination: "/users/nestedpages/organisers-event", // Serve admin dashboard
         },
         // {
         //   source: "/about",
