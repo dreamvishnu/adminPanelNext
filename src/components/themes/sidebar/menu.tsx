@@ -20,7 +20,7 @@ export interface Menu {
 const menu: Array<Menu> = [
   {
     title: "Overview",
-    path: "/adminDashboard",
+    path: "/dashboardAdmin",
     icon: "nav-icon fas fa-eye"
   },
   {

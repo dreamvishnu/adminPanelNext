@@ -80,5 +80,6 @@
     { "name": "Ananya Rao", "rating": 4, "image": "/3" },
     { "name": "Ravi Kumar", "rating": 4, "image": "/4" },
     { "name": "Neha Verma", "rating": 3, "image": "/5" }
-  ]
+  ],  
+  "events": []
 }

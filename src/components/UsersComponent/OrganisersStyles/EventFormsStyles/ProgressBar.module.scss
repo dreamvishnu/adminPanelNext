@@ -1,30 +1,29 @@
+$primary-color: #4f2be3; // Define the primary color variable
+
 .container {
   padding: 20px;
   background: white;
   border-radius: 20px;
-  width: 100%
+  width: 100%;
 }
 
 .card {
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  // padding: 20px;
-  // background-color: #fff;
   border-radius: 20px;
-  // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .progressBar {
+  display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-self: center;
   width: 100%;
-  // padding: 20px;
 
   .title {
     font-size: 2rem;
     font-weight: 800;
-    color: #5e217e;
+    color: #4b0082;
     margin-bottom: 20px;
     text-align: left;
   }
@@ -32,57 +31,52 @@
   .barContainer {
     position: relative;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: calc(100% - 40px); /* Adjust to fit circles */
-    margin: 20px 20px 0; /* Add padding around */
-    padding: 0;
-  }
+    justify-content: space-between;
+    width: 80%;
+    margin: 20px auto;
 
-  .line {
-    position: absolute;
-    top: 50%;
-    left: 15px; /* Align with the first circle */
-    right: 40px; /* Align with the last circle */
-    height: 4px;
-    background-color: #c4c4c4;
-    z-index: 0;
+    .lineContainer {
+      position: absolute;
+      top: 45%;
+      left: 15px; /* Matches the circle radius */
+      right: 15px; /* Matches the circle radius */
+      height: 4px;
+      background-color: #c4c4c4;
+      overflow: hidden; /* Ensures line doesn't extend beyond the container */
 
-    // &.active {
-    //   background-color: #5e217e;
-    // }
+      .line {
+        height: 100%;
+        background-color: $primary-color;
+        width: 0%; /* Dynamically updated based on steps */
+        transition: width 0.3s ease-in-out;
+      }
+    }
   }
 
   .step {
     position: relative;
-    // display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 1;
 
     .circle {
-      width: 28px;
-      height: 28px;
+      width: 32px; /* Slightly larger to fill the space */
+      height: 32px;
       border-radius: 50%;
       background-color: #fff;
       border: 4px solid #c4c4c4;
       display: flex;
       justify-content: center;
       align-items: center;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #c4c4c4; /* Default text color */
 
       &.active {
-        border-color: #5e217e;
+        border-color: $primary-color;
+        color: $primary-color; /* Text color matches the active border */
       }
-    }
-
-    .label {
-      padding-top: 10px; /* Adjust the gap between the label and the circle */
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: #5e217e;
-      text-align: center;
-      position: relative; /* Ensure it aligns correctly below the circle */
-      top: 20px; /* Push it slightly down to align perfectly */
     }
   }
 
@@ -113,15 +107,5 @@
         cursor: not-allowed;
       }
     }
-  }
-
-  .step:not(:last-child) {
-    flex: 1;
-  }
-
-  .step .circle {
-    position: relative;
-    top: 0.5px;
-    transform: translateY(50%); /* Align circles vertically */
   }
 }

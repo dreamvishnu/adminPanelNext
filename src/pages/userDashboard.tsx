@@ -16,34 +16,29 @@ const UserDashboard = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // Get user data from local storage
     const userData = getItem("userdata");
 
-    // Debugging logs for development
     console.log("User Data:", userData);
 
-    // Check if token is valid
     if (userData?.token !== 12341212) {
       console.log("Invalid token, redirecting to user login...");
-      router.push("/userlogin"); // Redirect to user login
+      router.push("/userlogin");
     }
   }, [router]);
 
-  // Tab data for rendering dynamically
   const tabs = [
     { name: "Ongoing", component: <Ongoing /> },
-    { name: "Previous Events", component: <PreviousEvent/> },
-    { name: "Request", component: <Request/> },
-    { name: "Recommendation", component: <Recommendations/> },
-    { name: "Create an Events", component: <EventForm /> },
+    { name: "Previous Events", component: <PreviousEvent /> },
+    { name: "Request", component: <Request /> },
+    { name: "Recommendation", component: <Recommendations /> },
+    { name: "Create an Events", component: <EventForm setActiveTab={setActiveTab} /> },
+    // Pass setActiveTab
   ];
 
-  // Find the active tab index for indicator positioning
   const activeTabIndex = tabs.findIndex((tab) => tab.name === activeTab);
 
   return (
     <PanelContent headerContent>
-      {/* Tab Navigation */}
       <Box className="scrollableContent">
         <Box className={styles.tabContainer}>
           {tabs.map((tab, index) => (
@@ -58,13 +53,13 @@ const UserDashboard = () => {
           <div
             className={styles.indicator}
             style={{
-              transform: `translateX(${activeTabIndex * 100}%)`, // Move indicator to the active tab
-              width: `${100 / tabs.length}%`, // Adjust width based on the number of tabs
+              transform: `translateX(${activeTabIndex * 100}%)`,
+              width: `${100 / tabs.length}%`,
             }}
           />
         </Box>
 
-        {/* Tab Content */}
+        {/* Render the active tab content */}
         <Box>
           {tabs.map((tab, index) => (
             <div key={index} style={{ display: activeTab === tab.name ? "block" : "none" }}>

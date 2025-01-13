@@ -5,24 +5,26 @@ import Overview from "@/components/overview/Overview";
 import Help from "@/components/help/Help";
 import { Box } from "@mui/material";
 import styles from "./AdminDashboard.module.css";
+import { useUser } from "../components/context/UserContext"; // Importing context
+
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState<"overview" | "help">("overview");
   const router = useRouter();
+  const { user } = useUser(); // Using user context
+
 
   useEffect(() => {
     // Get user data from local storage
-    const userData = getItem("userdata");
+    console.log("User Data from Context:", user);
 
-    // Debugging logs for development
-    console.log("User Data:", userData);
-
+    
     // Check if token is valid
-    if (userData?.token !== 12341210) {
-      console.log("Invalid token, redirecting to admin login...");
-      router.push("/admin"); // Redirect to admin login
+    if (!user || user.token !== 12341210 || user.role !== "admin") {
+      console.log("Unauthorized access. Redirecting to admin login...");
+      router.replace("/admin"); // Redirect to admin login
     }
-  }, [router]);
+  }, [user, router]);
 
   return (
     <PanelContent headerContent>

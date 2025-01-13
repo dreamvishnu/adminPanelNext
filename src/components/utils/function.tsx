@@ -5,9 +5,9 @@ import Image from "next/image";
 
 export const getItem = (nama: string) => {
   if (typeof window !== "undefined") {
-    return localStorage.getItem(doEncrypt(nama)) === null
+    return sessionStorage.getItem(doEncrypt(nama)) === null
       ? []
-      : doDecrypt(JSON.parse(localStorage.getItem(doEncrypt(nama)) || "[]"));
+      : doDecrypt(JSON.parse(sessionStorage.getItem(doEncrypt(nama)) || "[]"));
   }
 };
 
@@ -27,13 +27,13 @@ export const LoadingApp = () => {
 
 export const setItem = (nama: string, data: any) => {
   if (typeof window !== "undefined") {
-    localStorage.setItem(doEncrypt(nama), JSON.stringify(doEncrypt(data)));
+    sessionStorage.setItem(doEncrypt(nama), JSON.stringify(doEncrypt(data)));
   }
 };
 
 export const removeItem = (nama: string) => {
   if (typeof window !== "undefined") {
-    localStorage.removeItem(doEncrypt(nama));
+    sessionStorage.removeItem(doEncrypt(nama));
   }
 };
 

@@ -3,7 +3,8 @@ import { themesSetting } from "@/recoil";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
-import router, { withRouter } from "next/router";
+import {withRouter } from "next/router";
+import { useUser } from "../../components/context/UserContext"; // UPDATED: Added `useUser` for user context management
 
 const defaultValue = {
   username: "",
@@ -12,11 +13,13 @@ const defaultValue = {
 
 const Admin = (props: any) => {
   const setTheme = useSetRecoilState(themesSetting);
+  const { setUser } = useUser(); // UPDATED: Use `setUser` to manage user state in the context
+
   useEffect(() => {
     const userData = getItem("userdata");
     if (userData?.token === 12341210) {
       console.log("Valid admin token, redirecting to dashboardAdmin");
-      router.replace("/dashboardAdmin"); // Use replace to avoid history stack issues
+      props.router.replace("/dashboardAdmin"); // Redirect to admin dashboard if token is valid
     }
     setTheme({
       header: false,
@@ -44,14 +47,16 @@ const Admin = (props: any) => {
   const [password, setPassword] = useState(true);
 
   const onSubmit = async (data: any) => {
-    
-    setItem("userdata", {
-      userid: "sam",
-      username: "Samsul Arifin",
+    // Save admin data in both context and session storage
+    const adminData = {
+      userid: "admin_1",
+      username: data.username, // Use the username entered by the admin
       token: 12341210,
-      role: "admin"
-    });
-    props.router.push("/dashboardAdmin");
+      role: "admin",
+    };
+    setUser(adminData); // UPDATED: Set admin data in context
+    setItem("userdata", adminData); // Save admin data securely
+    props.router.push("/dashboardAdmin"); // Redirect to admin dashboard
   };
 
   return (

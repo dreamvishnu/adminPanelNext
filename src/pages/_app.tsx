@@ -8,6 +8,7 @@ import Head from "next/head";
 import { RecoilRoot } from "recoil";
 import { Suspense } from "react";
 import { LoadingApp } from "@/components";
+import { UserProvider } from "@/components/context/UserContext";
 
 const Layout = dynamic(() => import("@/components/themes"), {
   suspense: true
@@ -16,6 +17,7 @@ const Layout = dynamic(() => import("@/components/themes"), {
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
+      <UserProvider>
       <Layout>
         <Head>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -26,6 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Suspense>
       </Layout>
+      </UserProvider>
     </RecoilRoot>
   );
 }

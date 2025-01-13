@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 import { withRouter } from "next/router";
+import { useUser } from "../../components/context/UserContext";
 
 const defaultValue = {
   username: "",
@@ -12,10 +13,12 @@ const defaultValue = {
 
 const Login = (props: any) => {
   const setTheme = useSetRecoilState(themesSetting);
+  const { setUser } = useUser();
   useEffect(() => {
-    if (getItem("userdata").token !== undefined) {
-        props.router.push("/userDashboard");
-      }
+    const userData = getItem("userdata");
+    if (userData?.token) {
+      props.router.push("/userDashboard"); // If token exists, redirect to `userDashboard`
+    }
     setTheme({
       header: false,
       sidebar: false,
@@ -42,13 +45,17 @@ const Login = (props: any) => {
   const [password, setPassword] = useState(true);
 
   const onSubmit = async (data: any) => {
-    props.router.push("/userDashboard");
-    setItem("userdata", {
+    // Save user data in both `UserContext` and session storage
+    props.router.push("/userDashboard"); // Redirect to user dashboard
+    const userData = {
       userid: "sam",
-      username: "Samsul Arifin",
+      username: data.username, // Use the username entered by the user
       token: 12341212,
-      role: "organiser"
-    });
+      role: "organiser",
+    };
+    setUser(userData); // UPDATED: Set user data in the context
+    setItem("userdata", userData); // Save user data in session storage
+    
   };
 
   return (
