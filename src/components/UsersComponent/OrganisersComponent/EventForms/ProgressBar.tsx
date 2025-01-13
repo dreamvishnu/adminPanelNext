@@ -97,7 +97,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ steps }) => {
       </div>
 
       <div className={styles.stepContent}>{renderStep()}</div>
-
+      <div className={styles.buttonContainer}>
       <div className={styles.stepbuttons}>
         <button
           onClick={handlePrevious}
@@ -118,6 +118,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ steps }) => {
             Next
           </button>
         )}
+      </div>
       </div>
     </div>
     </div>

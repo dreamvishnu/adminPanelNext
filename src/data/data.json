@@ -23,9 +23,7 @@
   ],
   "activity": {
     "Month": [120, 200, 300, 250, 350, 400, 320, 300, 360, 390, 420, 450],
-    "Year": [
-      3000, 3200, 3400, 3100, 3600, 3800, 4000, 4200, 4400, 4600, 4800, 5000
-    ]
+    "Year": [3000, 3200, 3400, 3100, 3600, 3800, 4000, 4200, 4400, 4600, 4800, 5000]
   },
   "userCategory": [
     { "icon": "👥", "title": "Organizers", "value": "1068" },
@@ -47,7 +45,7 @@
       "title": "React",
       "percentage": 78,
       "icon": "physics",
-     "color": "linear-gradient(135deg, #ffd700, #ffae42)"
+      "color": "linear-gradient(135deg, #ffd700, #ffae42)"
     },
     {
       "title": "JavaScript",
@@ -80,5 +78,148 @@
     { "name": "Ananya Rao", "rating": 4, "image": "/3" },
     { "name": "Ravi Kumar", "rating": 4, "image": "/4" },
     { "name": "Neha Verma", "rating": 3, "image": "/5" }
+  ],
+  "events": [
+    {
+      "eventID": "101P00Q101",
+      "Step1": {
+        "eventName": "Tech Innovations 2025",
+        "eventCategory": "In-person",
+        "startDate": "2025-02-10",
+        "startTime": "10:00",
+        "endTime": "17:00",
+        "location": "San Francisco"
+      },
+      "Step2": {
+        "bannerImage": "https://res.cloudinary.com/dg7ovb7da/image/upload/w_500,h_300,c_fill/myprivate/banner1.jpg"
+      },
+      "Step3": {
+        "eventType": "Free Event",
+        "ticketName": "",
+        "ticketPrice": "0"
+      },
+      "Step4": {
+        "acceptedRequests": [
+          {
+            "id": 3,
+            "name": "Microsoft",
+            "type": "Sponsors",
+            "image": "https://logo.com/microsoft.png"
+          },
+          {
+            "id": 10,
+            "name": "Elon Musk",
+            "type": "Speakers",
+            "image": "https://speakerbio.com/elon.jpg"
+          },
+          {
+            "id": 8,
+            "name": "Moscone Center",
+            "type": "Venue",
+            "image": "https://venueimages.com/moscone.jpg"
+          },
+          {
+            "id": 16,
+            "name": "Taco Fiesta",
+            "type": "Food",
+            "image": "https://catering.com/taco.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "eventID": "202C00D202",
+      "Step1": {
+        "eventName": "AI World Summit",
+        "eventCategory": "Hybrid",
+        "startDate": "2025-03-05",
+        "startTime": "09:00",
+        "endTime": "18:00",
+        "location": "New York"
+      },
+      "Step2": {
+        "bannerImage": "https://res.cloudinary.com/dg7ovb7da/image/upload/w_500,h_300,c_fill/myprivate/banner2.jpg"
+      },
+      "Step3": {
+        "eventType": "Ticketed Event",
+        "ticketName": "General Admission",
+        "ticketPrice": "299"
+      },
+      "Step4": {
+        "acceptedRequests": [
+          {
+            "id": 4,
+            "name": "IBM",
+            "type": "Sponsors",
+            "image": "https://logo.com/ibm.png"
+          },
+          {
+            "id": 11,
+            "name": "Andrew Ng",
+            "type": "Speakers",
+            "image": "https://speakerbio.com/andrew.jpg"
+          },
+          {
+            "id": 12,
+            "name": "Javits Center",
+            "type": "Venue",
+            "image": "https://venueimages.com/javits.jpg"
+          },
+          {
+            "id": 17,
+            "name": "Pasta Delight",
+            "type": "Food",
+            "image": "https://catering.com/pasta.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "eventID": "30A30B0303",
+      "Step1": {
+        "eventName": "Blockchain Conference",
+        "eventCategory": "Virtual",
+        "startDate": "2025-04-12",
+        "startTime": "11:00",
+        "endTime": "16:00",
+        "location": "Online"
+      },
+      "Step2": {
+        "bannerImage": "https://res.cloudinary.com/dg7ovb7da/image/upload/w_500,h_300,c_fill/myprivate/banner3.jpg"
+      },
+      "Step3": {
+        "eventType": "Free Event",
+        "ticketName": "",
+        "ticketPrice": "0"
+      },
+      "Step4": {
+        "acceptedRequests": [
+          {
+            "id": 5,
+            "name": "Coinbase",
+            "type": "Sponsors",
+            "image": "https://logo.com/coinbase.png"
+          },
+          {
+            "id": 13,
+            "name": "Vitalik Buterin",
+            "type": "Speakers",
+            "image": "https://speakerbio.com/vitalik.jpg"
+          },
+          {
+            "id": 14,
+            "name": "Online",
+            "type": "Venue",
+            "image": "https://venueimages.com/online.jpg"
+          },
+          {
+            "id": 18,
+            "name": "Virtual Snacks",
+            "type": "Food",
+            "image": "https://catering.com/snacks.jpg"
+          }
+        ]
+      }
+    }
   ]
 }

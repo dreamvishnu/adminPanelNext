@@ -125,3 +125,16 @@
     transform: translateY(50%); /* Align circles vertically */
   }
 }
+
+.buttonContainer {
+  align-items: center;
+  justify-content: center;
+  max-width: 50%; /* Centered, modern layout */
+  // margin: 70px;
+  margin-left: 70px;
+  margin-right: 70px;
+  // padding: 30px;
+  // background: #ffffff; /* Cleaner white background */
+  border-radius: 20px; /* Softer corners */
+  // box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Subtle elevation */
+}
