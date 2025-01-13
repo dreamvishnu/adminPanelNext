@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./styles/Step2.module.scss";
 
 interface Step2Props {
@@ -8,6 +8,7 @@ interface Step2Props {
 
 const Step2: React.FC<Step2Props> = ({ data = {}, onDataChange }) => {
   const [bannerImage, setBannerImage] = useState(data.bannerImage || "");
+
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -28,8 +29,17 @@ const Step2: React.FC<Step2Props> = ({ data = {}, onDataChange }) => {
             onChange={handleFileUpload}
             style={{ display: "none" }}
           />
-          {data?.bannerImage ? (
-            <span>{data.bannerImage.name}</span>
+          {bannerImage ? (
+            <img
+              src={bannerImage}
+              alt="Uploaded Banner"
+              style={{
+                maxWidth: "100%",
+                maxHeight: "100%",
+                objectFit: "contain",
+                borderRadius: "10px",
+              }}
+            />
           ) : (
             <span>Upload Banner Image</span>
           )}

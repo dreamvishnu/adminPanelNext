@@ -142,7 +142,6 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ steps, setActiveTab }) => {
               </div>
             ))}
           </div>
-
           <div className={styles.stepContent}>{renderStep()}</div>
 
           <div className={styles.stepbuttons}>

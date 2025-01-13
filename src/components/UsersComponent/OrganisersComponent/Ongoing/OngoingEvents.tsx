@@ -1,58 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import styles from "../../AdminStyles/eventsSection.module.scss";
-
-const events = [
-  {
-    name: "Sound Of Christmas 2023",
-    date: { month: "DEC", day: "02" },
-    venue: "Bal Gandharva Rang Mandir, Mumbai",
-    time: "6:30 PM - 9:30 PM",
-    price: "INR 499",
-    attendees: 16,
-    image: "https://res.cloudinary.com/dg7ovb7da/image/upload/w_500,h_300,c_fill/myprivate/banner1.jpg",
-  },
-  {
-    name: "Global Engineering Education Expo 2023",
-    date: { month: "DEC", day: "03" },
-    venue: "The St. Regis, Mumbai",
-    time: "10 AM - 2 PM",
-    price: "FREE",
-    attendees: 48,
-    image: "https://res.cloudinary.com/dg7ovb7da/image/upload/w_500,h_300,c_fill/myprivate/banner2.jpg",
-  },
-  {
-    name: "The Road to Jobs and Internships",
-    date: { month: "JAN", day: "13" },
-    venue: "Online",
-    time: "6 PM - 7:30 PM",
-    price: "INR 49",
-    attendees: 21,
-    image: "https://res.cloudinary.com/dg7ovb7da/image/upload/w_500,h_300,c_fill/myprivate/banner3.jpg",
-  },
-  {
-    name: "Tech Talk 2024",
-    date: { month: "JAN", day: "20" },
-    venue: "Online",
-    time: "7 PM - 8:30 PM",
-    price: "INR 99",
-    attendees: 30,
-    image: "https://res.cloudinary.com/dg7ovb7da/image/upload/w_500,h_300,c_fill/myprivate/banner4.jpg",
-  },
-];
+import eventData from "../../../../data/data.json"; // Import the data.json file
 
 const OngoingEvents: React.FC = () => {
   const router = useRouter();
 
-  const handleCardClick = (eventId: string) => {
-    // Navigate to the event detail page with the eventId as a query parameter
-    router.push(`/users/nestedpages/organisers-event?eventId=${eventId}`);
+  // Map data.json to the required format
+  const events = eventData.events.map((event) => ({
+    name: event.Step1.eventName,
+    date: {
+      month: new Date(event.Step1.startDate).toLocaleString("default", { month: "short" }).toUpperCase(),
+      day: new Date(event.Step1.startDate).getDate().toString().padStart(2, "0"),
+    },
+    venue: event.Step1.location,
+    time: `${event.Step1.startTime} - ${event.Step1.endTime}`,
+    price: event.Step3.ticketPrice === "0" ? "FREE" : `INR ${event.Step3.ticketPrice}`,
+    image: event.Step2.bannerImage,
+    fullData: event, // Pass the entire event data
+  }));
+
+  const handleCardClick = (event) => {
+    // Navigate to the OrganisersEvent page with the entire event data
+    router.push({
+      pathname: "/users/nestedpages/organisers-event",
+      query: { eventData: JSON.stringify(event.fullData) }, // Serialize the data for query
+    });
   };
 
   return (
     <section className={styles.container}>
-        <div className={styles.header}>
-      <h2 className={styles.title}>Events</h2>
+      <div className={styles.header}>
+        <h2 className={styles.title}>Events</h2>
       </div>
       <ul className={styles.eventsList}>
         {events.map((event, index) => (
@@ -60,7 +39,7 @@ const OngoingEvents: React.FC = () => {
             key={index}
             className={styles.eventCard}
             style={{ backgroundImage: `url(${event.image})` }}
-            onClick={() => handleCardClick(index.toString())} // Passing index as eventId
+            onClick={() => handleCardClick(event)}
           >
             <div className={styles.overlay}></div>
             <div className={styles.eventDetails}>
@@ -68,7 +47,6 @@ const OngoingEvents: React.FC = () => {
               <p className={styles.venue}>{event.venue}</p>
               <p className={styles.time}>{event.time}</p>
               <p className={styles.price}>{event.price}</p>
-              <p className={styles.attendees}>{event.attendees} interested</p>
             </div>
           </li>
         ))}
